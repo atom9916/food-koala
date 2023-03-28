@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/router';
 import CheckoutForm from '../components/CheckoutForm';
+import Cookies from 'js-cookie';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -14,17 +15,22 @@ export default function Checkout() {
   const amount = Number(router.query.amount);
   const thanks = router.query.thanks as string;
   const optionData = router.query.options;
+  const userId = Cookies.get('user_id');
 
   //stripeのpayment_intentを作成
   useEffect(() => {
-    fetch('/api/create_payment_intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: amount }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, [amount]);
+    if (userId === undefined || userId === null) {
+      return;
+    } else {
+      fetch('/api/create_payment_intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: amount }),
+      })
+        .then((res) => res.json())
+        .then((data) => setClientSecret(data.clientSecret));
+    }
+  }, [amount, userId]);
 
   const appearance = {
     theme: 'stripe',

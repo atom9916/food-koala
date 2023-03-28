@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid rgba(189, 140, 66, 0.5);
+  border-bottom: 2px solid rgba(189, 140, 66, 0.3);
   background-color: #fff;
 }
 
@@ -50,10 +50,56 @@
 
 .nav {
   cursor: pointer;
+  display: flex;
 }
 
+/* ショッピングカートアイコンのCSS */
 .false{
   display: none;
+}
+
+.off {
+  display: none
+}
+
+.shoppingcart{
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+}
+
+.shoppingcart img {
+  position: absolute;
+  top: 25px;
+  right: 2%;
+}
+
+.koala_on_cart{
+  margin-left: 25px;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+}
+
+.koala_on_cart span{
+  position: absolute;
+  top: 23px;
+  right: 40px;
+  background-color: #e97007;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.koala_on_cart img {
+  position: absolute;
+  top: 15px;
+  right: 1%;
 }
 
 /* ハンバーガーメニュー用 */
@@ -62,7 +108,7 @@
 }
 
 .hamburger {
-  width: 65%;
+  margin-right: 2%;
 }
 
 @media screen and (max-width:768px) {

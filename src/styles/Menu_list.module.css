@@ -1,51 +1,68 @@
 .topPage {
-  margin: 80px 0;
+  width: 78%;
+  height: 100%;
+  float: right;
 }
 
+.aside{
+  width: 19%;
+  height: 100%;
+  float: left;
+  box-shadow: 2px 0 7px rgba(189, 140, 66, 0.3);
+  padding-top: 2%;
+  padding-bottom: 8%;
+}
+
+
 .h2 {
-  width: 80%;
   text-align: center;
   margin: 0 auto;
   font-size: 30px;
-  color: rgb(123, 116, 116);;
+  color: rgb(123, 116, 116);
 }
 
-.genre_area {
-  margin: 50px auto;
-}
 
 .all_menu { 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 80%;
-  margin: 0px auto;
+  width: 100%;
+  margin: 0 auto;
   
 }
 
 .menu {
   text-align: center;
-  margin: 50px auto;
-  font-size: 20px;
-  border: solid 3px #F78404;
+  width: 25%;
+  margin: 2%;
+  font-size: 18px;
+  padding: 1%;
+  border: solid 1px rgba(226, 143, 18, 0.3);
   border-radius: 5px;
-  padding: 3%;
-  box-shadow: 3px 5px #9bb0a5;
 }
+
+.menu:hover {
+  opacity: 0.8;
+  box-shadow: 0 7px 7px #9bb0a5;
+}
+
 
 .menu_link {
   text-decoration: none;
   color: #000;
 }
 
-.menu_link:hover {
-  opacity: 0.6;
+
+.menu_img img{
+  width: 180px;
+  height: 180px
 }
 
 .menu button {
-  width: 250px;
+  width: 200px;
   height: 30px;
   border: 1px solid orange;
+  font-weight: 700;
   border-radius: 15px;
   background-color: orange;
   color: #fff;
@@ -62,9 +79,34 @@
   transform: translateY(1px);
 }
 
-.topPage img {
-  object-fit:cover;
+.shop_detail_menuName {
+  font-size: 15px;
 }
+
+.shop_detail_menuPrice {
+  font-size: 15px;
+}
+
+.buttons input {
+  width: 30px;
+  height: 30px;
+  margin: 20px 5px;
+  font-weight: 700;
+  border-radius: 5px;
+  background-color: white;
+  border: 3px double  #00D698;
+  box-shadow: 1px 2px #9bb0a5;
+}
+
+.buttons input:hover{
+  opacity: 0.7;
+}
+
+.buttons input:active{
+  box-shadow: none;
+  transform: translateY(1px);
+}
+
 
 /* レスポンシブ */
 @media screen and (max-width:960px) {

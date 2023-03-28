@@ -1,72 +1,44 @@
-.h2{
-  width: 80%;
-  margin: 1% auto;
-  font-size: 30px;
+.p{
+  width: 100%;
+  margin-left: 5%;
   color: rgb(123, 116, 116);;
-  /* border: 1px solid #000; */
-}
-.arealist {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  height: 100px;
-  margin: 0px auto;
-  /* border: 1px solid #000; */
 }
 
 .all_area {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
   width: 100%;
   margin: 10px auto;
 }
 
-
 .area {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin: 0;
+  margin: 10px auto;
 }
 
-
 .area button {
-  width: 120px;
-  height: 40px;
-  background-color:  #00D698;
-  color: #4f4842;
-  border-radius: 20px;
-  border: 1px dashed  #fff;
-  box-shadow: 0px 0px 0px 5px #00D698;
-
+  width: 100px;
+  height: auto;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 3px double  rgba(226, 143, 18, 0.3);
+  background-color: white;
 }
 
 .area button:hover {
   opacity: 0.6;
 }
 
-.area p {
-  margin: 0 auto;
-  font-size: 18px;
-  color: #fff;
-}
-
 @media screen and (max-width:960px) {
-  .h2 {
-    font-size: 25px;
-  }
   .area button {
     width: 75%;
     height: 100%;
   }
-  .area p {
-    font-size: 100%;
-  }
+
 }
 
 @media screen and (max-width:700px) {
-  .h2 {
-    font-size: 18px;
-  }
+
 }

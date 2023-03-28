@@ -1,52 +1,63 @@
+/* ショップ一覧ページのCSS */
+
 .shop_list_main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
+    width: 78%;
 }
 
 .shop_list {
-    width:30%;
-    border: solid 3px #F78404;
+    width:27%;
+    border: solid 1px rgba(226, 143, 18, 0.3);
     border-radius: 5px;
-    margin: 0 1% 2% 1%;
+    margin: 1%;
     place-items: center;
     padding: 1%;
-    box-shadow: 3px 5px #9bb0a5;
+}
+
+.shop_list a{
+    text-decoration: none;
+}
+
+.shop_list a:hover{
+    opacity: 0.7;
 }
 
 .shop_list_name {
     color: #E75304;
     margin-left: 5%;
+    font-size: 16px;
 }
 
 .shop_list_score {
     color: #F78404;
     margin-right: 5%;
     text-align: end;
-    padding-bottom:5px;
-    font-size: 18px;
-    padding-bottom: 30px;
+    font-size: 12px;
 }
 
-.shop_list_image, .shop_list_description {
+.shop_list_image {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.shop_list_description {
-    text-align: center;
-    white-space:pre;
-}
-
 .shop_list_image img {
     object-fit:cover;
-    padding-bottom: 10px;
+    margin-bottom: 1%;
 }
 
 .shop_list_image img:hover {
+    box-shadow: 0 7px 7px #9bb0a5;
     opacity: 0.7;
+}
+
+/* ショップ一覧ページのメニューのCSS */
+
+.shop_menu_list {
+    display: flex;
+    justify-content: center;
 }
 
 .shop_list_menu {
@@ -55,12 +66,16 @@
 
 .shop_list_menuImg img{
     object-fit:cover;
-    padding:0 5px;
 }
 
 .shop_list_menuImg img:hover {
+    box-shadow: 0 7px 7px #9bb0a5;
     opacity: 0.7;
 }
+
+
+
+/* ショップ詳細ページのCSS */
 
 .shop_menu {
     text-align: center;
@@ -74,6 +89,17 @@
 
 .shop_list_button span{
     text-decoration: none;
+}
+
+.shop_list_description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shop_list_description {
+    text-align: center;
+    white-space:pre;
 }
 
 .shop_menu button {
@@ -95,6 +121,8 @@
   box-shadow: none;
   transform: translateY(1px);
 }
+
+
 
 /* ログイン前のお気に入りページ */
 .favorite_login {
@@ -128,15 +156,11 @@
     color: black;
 }
 
+
+
 /* ログイン後のfavoriteページ */
 .favorite {
     margin:10% 0;
-}
-
-/* menulistのCSS */
-.shop_menu_list {
-    display: flex;
-    justify-content: center;
 }
 
 @media screen and (max-width:1120px) {
@@ -157,3 +181,44 @@
         place-items: center;
     }
   }
+
+  /* モーダル用のCSS */
+  .screen {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+
+.close {
+    position: absolute;
+    top: 0;
+    right: -400px;
+    transition: all 0.7s ;
+  }
+  
+  .open {
+    z-index: 15;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 35%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid rgba(226, 143, 18, 0.3);
+    overflow: scroll;
+    transition: all 0.7s;
+  }
+  
+  /* モーダルが開いている時の背景のCSS */
+  .true {
+    width:100%;
+    height:100vw;
+    position: fixed;
+    opacity: 0.3;
+    z-index: 1;
+  }
+  
+  

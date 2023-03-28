@@ -175,5 +175,5 @@ export default function OrderSending() {
     orderDate();
   }
 
-  return <h1>注文中。。。</h1>;
+  return <h1>注文中...</h1>;
 }

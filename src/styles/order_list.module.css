@@ -1,33 +1,36 @@
 .main {
-    margin-top: 90px;
-}
-
-.order_list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 100vw;
-    min-height: 100vh;
 }
 
-.order_list_h1 {
-    color: #E75304;
-    white-space: nowrap;
+.closebtn {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 40px;
+    position: absolute;
+    top: 0;
+    right: 420px;
 }
 
-/* 購入画面へ */
+.modal h1 {
+    text-align: center;
+}
+
+/* お会計へ進むボタン*/
 .transition_button {
-    margin: 30px auto;
-    width: 200px;
-    height: 30px;
+    width: 100%;
+    padding: 5px 0;
+    font-size: 20px;
+    font-weight: 700;
     border: 1px solid #f8b856;
-    border-radius: 15px;
-    background-color: #f8b856;
+    border-radius: 5px;
+    background-color: #f1960c;
     color: #fff;
-    font-size: 15px;
     box-shadow: 1px 2px #9bb0a5;
-
+    cursor: pointer;
 }
 
 .transition_button:hover {
@@ -37,7 +40,6 @@
 .transition_button:active {
     box-shadow: none;
     transform: translateY(1px);
-
 }
 
 .ok {
@@ -53,19 +55,22 @@
     font-weight: bold;
 }
 
+
+/* メニュー一覧へボタン */
 .alert a {
     text-decoration: none;
     color: #fff;
 }
 
 .alert button {
-    margin: 30px auto;
-    width: 200px;
-    height: 30px;
+    width: 100%;
+    padding: 5px 0;
+    font-size: 20px;
+    font-weight: 700;
     border: 1px solid #f8b856;
-    border-radius: 15px;
-    background-color: #f8b856;
+    border-radius: 5px;
+    background-color: #f1960c;
     color: #fff;
-    font-size: 15px;
     box-shadow: 1px 2px #9bb0a5;
+    cursor: pointer;
 }

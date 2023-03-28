@@ -1,8 +1,61 @@
-.main {
-    margin-top: 80px;
+.screen {
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
 }
 
-.button_down{
+.aside{
+    width: 19%;
+    height: 100%;
+    float: left;
+    box-shadow: 2px 0 7px rgba(189, 140, 66, 0.3);
+    padding-top: 2%;
+    padding-bottom: 15%;
+  }
+
+  .main {
+  margin-top: 80px;
+}
+
+/* ページング用のボタンのCSS */
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons button {
+    width: 30px;
+    height: 30px;
+    margin: 20px 5px;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: white;
+    border: 3px double  rgba(226, 143, 18, 0.3);
+    box-shadow: 1px 2px #9bb0a5;
+  }
+  
+  .buttons button:hover{
+    opacity: 0.7;
+  }
+  
+  .buttons button:active{
+    box-shadow: none;
+    transform: translateY(1px);
+  }
+
+
+
+
+
+
+
+
+
+  /* UP・DOWNボタン用のCSS */
+/* .button_down{
         
         width: 7%;
         height: 5%;
@@ -78,4 +131,4 @@
     
         }
         
-    }
+    } */

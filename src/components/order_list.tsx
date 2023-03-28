@@ -1,4 +1,4 @@
-import styles from 'styles/order_check.module.css';
+import styles from 'styles/order_list.module.css';
 import useSWR from 'swr';
 import { useState, useEffect } from 'react';
 import type { CartItem } from 'types/cart_item';
@@ -50,14 +50,9 @@ export default function OrderList() {
   if (cartItems.length === 0) {
     return (
       <>
-        <div>
-          <h1>注文リスト</h1>
-        </div>
-        <div className={styles.order_list}>
+        <div className={styles.main}>
           <br />
-          <div className={styles.order_list_sub}>
-            カートに商品はありません
-          </div>
+          <p>カートに商品はありません</p>
           <br />
         </div>
       </>
@@ -65,61 +60,55 @@ export default function OrderList() {
   }
 
   return (
-    <>
-      <div className={styles.h1}>
-        <h1>注文リスト</h1>
+    <div className={styles.main}>
+      <div>
+        {cartItems.map((item, index) => (
+          <dl key={item.id}>
+            <dt>{item.name}</dt>
+            <dd>
+              <Image
+                src={item.image_url}
+                alt="商品画像"
+                width={150}
+                height={150}
+              />
+            </dd>
+            <dd>
+              <select
+                name="itemCount"
+                id={`itemCount-${index}`}
+                onChange={async (e) => {
+                  const selectedCount = e.target.value;
+                  const newCartItems = [...cartItems];
+                  newCartItems[index].count = parseInt(selectedCount);
+                  setCartItems(newCartItems);
+                  await fetch(`/api/patch_cart_items`, {
+                    method: 'PATCH',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      item_id: Number(item.id),
+                      count: Number(selectedCount),
+                    }),
+                  });
+                }}
+                value={item.count}
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+              </select>
+              個
+            </dd>
+            <dd>{item.price * item.count}円</dd>
+            <dd>
+              <DeleteButton value={item.id} />
+            </dd>
+          </dl>
+        ))}
+        <p>小計：{subTotal}円</p>
       </div>
-      <div className={styles.order_list}>
-        <div>
-          {cartItems.map((item, index) => (
-            <dl key={item.id}>
-              <dt>{item.name}</dt>
-              <dd>
-                <Image
-                  src={item.image_url}
-                  alt="商品画像"
-                  width={150}
-                  height={150}
-                />
-              </dd>
-              <dd>
-                <select
-                  name="itemCount"
-                  id={`itemCount-${index}`}
-                  onChange={async (e) => {
-                    const selectedCount = e.target.value;
-                    const newCartItems = [...cartItems];
-                    newCartItems[index].count =
-                      parseInt(selectedCount);
-                    setCartItems(newCartItems);
-                    await fetch(`/api/patch_cart_items`, {
-                      method: 'PATCH',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                        item_id: Number(item.id),
-                        count: Number(selectedCount),
-                      }),
-                    });
-                  }}
-                  value={item.count}
-                >
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                </select>
-                個
-              </dd>
-              <dd>{item.price * item.count}円</dd>
-              <dd>
-                <DeleteButton value={item.id} />
-              </dd>
-            </dl>
-          ))}
-          <p>小計：{subTotal}円</p>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }

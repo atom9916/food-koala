@@ -17,10 +17,12 @@ export default function ShopName({ data }: any) {
       <main className={styles.shop_list_main}>
         {data.map((shop: Shop) => (
           <div key={shop.id} className={styles.shop_list}>
-            <h2 className={styles.shop_list_name}>
-              <i className="fa-solid fa-utensils"></i>
-              &nbsp;&nbsp;{shop.name}
-            </h2>
+            <Link href={`/shop/${shop.id}`}>
+              <h2 className={styles.shop_list_name}>
+                <i className="fa-solid fa-utensils"></i>
+                &nbsp;&nbsp;{shop.name}
+              </h2>
+            </Link>
             <div className={styles.shop_list_score}>
               <ShopScore id={shop.id} />
             </div>
@@ -29,8 +31,8 @@ export default function ShopName({ data }: any) {
                 <Image
                   src={shop.image_url}
                   alt="お店の画像"
-                  width={200}
-                  height={200}
+                  width={160}
+                  height={160}
                 />
               </Link>
             </div>

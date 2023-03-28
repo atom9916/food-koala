@@ -2,9 +2,9 @@
 function MenuName(menu: { name: string }) {
   const menuName = menu.name.slice(0, 8);
   if (menu.name.length > 8) {
-    return <p>{menuName}...</p>;
+    return <span>{menuName}...</span>;
   } else {
-    return <p>{menu.name}</p>;
+    return <span>{menu.name}</span>;
   }
 }
 

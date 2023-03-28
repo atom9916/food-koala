@@ -15,7 +15,7 @@ export default function Genre({ onClick }: any) {
 
   return (
     <>
-      <h2 className={styles.h2}>--- Genre ---</h2>
+      <p className={styles.p}>▶︎ジャンルで絞り込む</p>
       <div className={styles.genrelist}>
         <div className={styles.all_genre}>
           {data.map((genre: Genre) => (

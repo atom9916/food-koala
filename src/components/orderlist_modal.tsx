@@ -1,20 +1,13 @@
-import Head from 'next/head';
-import Header from 'components/header';
-import BreadList, {
-  menu_list,
-  order_list,
-} from 'components/bread_list';
-import OrderList from 'components/order_list';
-import Footer from 'components/footer';
+import OrderList from './order_list';
+import styles from 'styles/order_list.module.css';
+import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import styles from 'styles/order_list.module.css';
 import type { CartItem } from 'types/cart_item';
-import Link from 'next/link';
+import useSWR from 'swr';
 import { Fetcher } from 'lib/Fetcher';
 
-export default function Orderlist() {
+export default function OrderListModal({ closeModal }: any) {
   const userId = Cookies.get('user_id');
   const router = useRouter();
   let itemId: CartItem[] = [];
@@ -39,12 +32,11 @@ export default function Orderlist() {
   if (itemId.length === 0) {
     return (
       <>
-        <Head>
-          <title>注文リスト</title>
-        </Head>
-        <Header />
-        <div className={styles.order_list}>
-          <BreadList list={[menu_list, order_list]} />
+        <div className={styles.modal}>
+          <h1>注文リスト</h1>
+          <button className={styles.closebtn} onClick={closeModal}>
+            &times;
+          </button>
           <OrderList />
           <div className={styles.alert}>
             <p>※カートに商品がないため、購入できません</p>
@@ -53,30 +45,25 @@ export default function Orderlist() {
             </button>
           </div>
         </div>
-        <Footer />
       </>
     );
   }
 
   return (
     <>
-      <Head>
-        <title>注文リスト</title>
-      </Head>
-      <Header />
-      <div className={styles.main}>
-        <BreadList list={[menu_list, order_list]} />
-        <div className={styles.order_list}>
-          <OrderList />
-          <button
-            className={styles.transition_button}
-            onClick={handleClick}
-          >
-            購入画面へ
-          </button>
-        </div>
+      <div className={styles.modal}>
+        <h1>注文リスト</h1>
+        <button className={styles.closebtn} onClick={closeModal}>
+          &times;
+        </button>
+        <OrderList />
+        <button
+          className={styles.transition_button}
+          onClick={handleClick}
+        >
+          お会計に進む
+        </button>
       </div>
-      <Footer />
     </>
   );
 }

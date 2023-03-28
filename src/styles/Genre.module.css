@@ -1,7 +1,6 @@
-.h2 {
-  width: 80%;
-  margin: 1% auto;
-  font-size: 30px;
+.p {
+  width: 100%;
+  margin-left: 5%;
   color: rgb(123, 116, 116);
 }
 
@@ -9,22 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   margin: 0px auto;
 }
 
 .all_genre {
-  display: flex;
-  width: 100%;
+  width: 30%;
   margin: auto;
-}
-
-.genre {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin: auto;
-  height: 50%;
 }
 
 .genre:hover {
@@ -38,23 +28,15 @@
 }
 
 .genre img {
-  width: 60%;
+  width: 100%;
   height: auto;
   object-fit:cover;
-}
-
-.genre p {
-  vertical-align: top;
-  font-size: 20px;
-  margin: 5px auto;
 }
 
 
 
 @media screen and (max-width:960px) {
-  .h2 {
-    font-size: 25px;
-  }
+
   .genre img {
     width: 100%;
     height: auto;
@@ -63,7 +45,5 @@
 }
 
 @media screen and (max-width:700px) {
-  .h2 {
-    font-size: 18px;
-  }
+
 }
