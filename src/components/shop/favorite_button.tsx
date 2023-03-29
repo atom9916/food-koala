@@ -114,16 +114,14 @@ export default function FavoriteButton({ shop }: { shop: Shop }) {
 
   //ハートボタンの表示
   return (
-    <>
-      <div className={styles[heart]}>
-        <button
-          type="button"
-          onClick={handleClick}
-          data-testid={'favorite'}
-        >
-          <i className="fa-solid fa-heart"></i>
-        </button>
-      </div>
-    </>
+    <div className={`${styles[heart]}`}>
+      <button
+        type="button"
+        onClick={handleClick}
+        data-testid={'favorite'}
+      >
+        <i className="fa-solid fa-heart"></i>
+      </button>
+    </div>
   );
 }

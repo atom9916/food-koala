@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import { Fetcher } from 'lib/Fetcher';
+import styles from '../../styles/Shop.module.css';
 
 export function useGetScore(id: number): number | undefined {
   const { data, error } = useSWR(
@@ -31,159 +32,135 @@ export default function ShopScore({ id }: { id: number }) {
     return <div> Failed to Load... </div>;
   } else if (Number.isNaN(score)) {
     return (
-      <>
-        <div>
-          -<i className="fa-regular fa-star"></i>
-          <i className="fa-regular fa-star"></i>
-          <i className="fa-regular fa-star"></i>
-          <i className="fa-regular fa-star"></i>
-          <i className="fa-regular fa-star"></i>
-        </div>
-      </>
+      <p className={styles.shop_id_score}>
+        -<i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+      </p>
     );
   } else {
     if (score < 0.5) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 1) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star-half-stroke"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star-half-stroke"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 1.5) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 2) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star-half-stroke"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star-half-stroke"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 2.5) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 3) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star-half-stroke"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star-half-stroke"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 3.5) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 4) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star-half-stroke"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star-half-stroke"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 4.5) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-regular fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+        </p>
       );
     } else if (score < 5) {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star-half-stroke"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star-half-stroke"></i>
+        </p>
       );
     } else {
       return (
-        <>
-          <p>
-            {score}
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-          </p>
-        </>
+        <p className={styles.shop_id_score}>
+          {score}
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+        </p>
       );
     }
   }

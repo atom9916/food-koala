@@ -13,11 +13,12 @@ import BreadList, {
 import FavoriteButton from 'components/shop/favorite_button';
 import { Fetcher } from 'lib/Fetcher';
 import { Shop, GetStaticProps, ShopProps, Menu } from 'types/shops';
-import styles from '../../styles/Shop.module.css';
+import styles from '../../styles/Shop_detail.module.css';
 import modalStyle from 'styles/OrderListModal.module.css';
 import ReviewForm from 'components/shop/review_form';
 import { useState } from 'react';
 import OrderListModal from 'components/orderlist_modal';
+import Link from 'next/link';
 
 //お店情報の取得
 const url = process.env['SUPABASE_URL'];
@@ -61,18 +62,17 @@ export function MenuList({ data }: { data: Menu[] }) {
       <div className={styles.shop_id_menu_list}>
         {data.map((menu: Menu) => (
           <div key={menu.id} className={styles.shop_id_menu}>
-            <a href={`/item/${menu.id}`}>
-              <div>
-                <Image
-                  src={menu.image_url}
-                  alt="メニュー画像"
-                  width={300}
-                  height={300}
-                />
-              </div>
-              <p>{menu.name}</p>
-              <p>{menu.price}円</p>
-            </a>
+            <Link href={`/item/${menu.id}`}>
+              <Image
+                src={menu.image_url}
+                alt="メニュー画像"
+                width={150}
+                height={150}
+              />
+              <p>
+                {menu.name} ¥{menu.price}円
+              </p>
+            </Link>
           </div>
         ))}
       </div>
@@ -89,13 +89,7 @@ export function ShopMenu({ shopId }: { shopId: number }) {
   if (error) return <div>エラーです</div>;
   if (!data) return <div>データを取得できませんでした</div>;
 
-  return (
-    <>
-      <div>
-        <MenuList data={data} />
-      </div>
-    </>
-  );
+  return <MenuList data={data} />;
 }
 
 //全体
@@ -137,11 +131,11 @@ export default function ShopDetail({ shopData }: ShopProps) {
               <BreadList list={[menu_list, shop_list, shop_page]} />
             </div>
             <div key={shop.id} className={styles.contents}>
-              <h1 className={styles.shop_id_name}>
-                <i className="fa-solid fa-utensils"></i>
-                &nbsp;&nbsp;{shop.name}
-              </h1>
-              <div className={styles.shop_id_score}>
+              <div className={styles.shop_id_name}>
+                <h1>
+                  <i className="fa-solid fa-utensils"></i>
+                  &nbsp;&nbsp;{shop.name}
+                </h1>
                 <ShopScore id={shop.id} />
               </div>
               <div className={styles.shop_id_image}>
@@ -151,18 +145,14 @@ export default function ShopDetail({ shopData }: ShopProps) {
                   width={300}
                   height={300}
                 />
-              </div>
-              <div>
-                <FavoriteButton shop={shop} />
-              </div>
-              <div className={styles.shop_id_description}>
-                {shop.description}
+                <div className={styles.favorite}>
+                  <FavoriteButton shop={shop} />
+                </div>
+                <p>{shop.description}</p>
               </div>
               <ShopMenu shopId={shop.id} />
-              <div>
+              <div className={styles.review_contents}>
                 <ShopReview id={shop.id} />
-              </div>
-              <div>
                 <ReviewForm id={shop.id} />
               </div>
             </div>

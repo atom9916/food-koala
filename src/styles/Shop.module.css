@@ -1,29 +1,39 @@
 /* [id]のCSS */
 .main {
-    margin-top: 100px;
+    margin-top: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column;
 }
 
-.shop_id_image, .shop_id_description {
+.contents {
+    width: 70%;
+    margin: 50px auto;
+    border:solid 1px #f8b856;
+    border-radius: 10px;
+}
+
+.bread {
+    margin-left: auto;
+}
+
+.shop_id_image {
+    margin: 5%;
+    width: 40%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    flex-flow: column;
 }
 
 .shop_id_name {
-    margin-left: 20%;
+    margin-left: 5%;
     color: #E75304;
 }
 
 .shop_id_score {
-    margin-right: 20%;
     color: #F78404;
-    text-align: end;
-    font-size: 20px;
-    padding-bottom: 15px;
+    font-size: 18px;
 }
 
 .shop_id_description {
@@ -49,6 +59,19 @@
 
 .shop_id_menu_list img {
     object-fit:cover;
+}
+
+.shop_id_menu:hover{
+    opacity: 0.8;
+}
+
+.shop_id_menu img:hover {
+    box-shadow: 0 7px 7px #9bb0a5;
+}
+
+.shop_id_menu img:active {
+    box-shadow: none;
+    transform: translateY(1px);
 }
 
 /* reviewのCSS */
@@ -85,16 +108,7 @@
     object-fit: cover;
 }
 
-.contents {
-    width: 90%;
-    margin: 0 auto;
-    border:solid 5px #F78404;
-    border-radius: 30px;
-}
-
-.bread {
-    margin-left: auto;
-}.review_score{
+.review_score{
     text-align: end;
     margin-right: 5%;
     color: #F78404;
@@ -119,10 +133,6 @@
 .review p{
     text-align: center;
 }
-
-/* .review_score_component {
-    position: relative;
-} */
 
 /* ReviewFormのCSS */
 .review_form_title{
@@ -199,13 +209,13 @@
     padding: 5px 10px;
 }
 
+
 /* favorite_buttonのCSS */
 
 .shop_favorite_true,.shop_favorite_false{
     text-align: right;
     margin-right: 20%;
 }
-
 
 .shop_favorite_true button{
     border: none;

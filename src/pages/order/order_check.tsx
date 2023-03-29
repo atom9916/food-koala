@@ -29,20 +29,6 @@ export default function OrderCheck() {
   const [optionData, setOptionData] = useState<Options>();
   const memorizedOptionData = useMemo(() => optionData, [optionData]);
   let thanks = '';
-  const [modal, setModal] = useState('close');
-  const [modalOpen, setModalOpen] = useState('false');
-
-  //カートアイコンがクリックされると、モーダルを表示し、背景を暗くする
-  const openModal = () => {
-    setModal('open');
-    setModalOpen('true');
-  };
-
-  //×ボタンがクリックされると、モーダルを非表示にし、背景を元に戻す
-  const closeModal = () => {
-    setModal('close');
-    setModalOpen('false');
-  };
 
   //cart_itemsテーブルからデータを取得
   useEffect(() => {
@@ -157,71 +143,58 @@ export default function OrderCheck() {
       <Head>
         <title>注文確認ページ</title>
       </Head>
-      <div className={modalStyle.screen}>
-        <div className={modalStyle[modal]}>
-          <OrderListModal closeModal={closeModal} />
-        </div>
-        <div className={modalStyle[modalOpen]}>
-          <Header openModal={openModal} />
-          <div className={styles.main}>
-            <BreadList list={[menu_list, order_check]} />
-            <div className={styles.order_check}>
-              <div className={styles.order_check_float1}>
-                <>
-                  <div className={styles.h1}>
-                    <h1 className={styles.order_list_h1}>
-                      注文リスト
-                    </h1>
+      <BreadList list={[menu_list, order_check]} />
+      <div className={styles.order_check}>
+        <div className={styles.order_check_float1}>
+          <>
+            <div className={styles.h1}>
+              <h1 className={styles.order_list_h1}>注文リスト</h1>
+            </div>
+            <div className={styles.order_list}>
+              <div>
+                {cartItems.map((item, index) => (
+                  <div key={index}>
+                    <dl>
+                      <dt>{item.name}</dt>
+                      <dd>
+                        <Image
+                          src={item.image_url}
+                          alt="商品画像"
+                          width={100}
+                          height={100}
+                        />
+                      </dd>
+                      <dd>{item.count}個</dd>
+                      <dd>{item.price * item.count}円</dd>
+                    </dl>
                   </div>
-                  <div className={styles.order_list}>
-                    <div>
-                      {cartItems.map((item, index) => (
-                        <div key={index}>
-                          <dl>
-                            <dt>{item.name}</dt>
-                            <dd>
-                              <Image
-                                src={item.image_url}
-                                alt="商品画像"
-                                width={100}
-                                height={100}
-                              />
-                            </dd>
-                            <dd>{item.count}個</dd>
-                            <dd>{item.price * item.count}円</dd>
-                          </dl>
-                        </div>
-                      ))}
-                      <p>小計：{subTotal}円</p>
-                    </div>
-                  </div>
-                </>
-                <SelectPay />
-                <p className={styles[errorAlert]}>
-                  ※お支払い方法を選択してください
-                </p>
-              </div>
-              <div className={styles.order_check_float2}>
-                <Option />
-                <Coupon
-                  subTotal={subTotal}
-                  onClick={(e) => {
-                    console.log(e.currentTarget.id);
-                    thanks = e.currentTarget.id;
-                  }}
-                />
-                <div>
-                  <button
-                    onClick={handleOrder}
-                    className={styles.order_check_button}
-                  >
-                    注文確定
-                  </button>
-                </div>
+                ))}
+                <p>小計：{subTotal}円</p>
               </div>
             </div>
+          </>
+          <SelectPay />
+          <p className={styles[errorAlert]}>
+            ※お支払い方法を選択してください
+          </p>
+        </div>
+        <div className={styles.order_check_float2}>
+          <Option />
+          <Coupon
+            subTotal={subTotal}
+            onClick={(e) => {
+              console.log(e.currentTarget.id);
+              thanks = e.currentTarget.id;
+            }}
+          />
+          <div>
+            <button
+              onClick={handleOrder}
+              className={styles.order_check_button}
+            >
+              注文確定
+            </button>
           </div>
-          <Footer />
         </div>
       </div>
     </>

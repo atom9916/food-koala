@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Head from 'next/head';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import Footer from 'components/footer';
 import Header from 'components/header';
 import BreadList, {

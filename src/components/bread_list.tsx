@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/breadList.module.css';
@@ -44,32 +45,35 @@ export default function BreadList({
     list: { title: string; path: string | null }[];
   }) {
     return (
-      <ul className={styles.breadList} key={router.asPath}>
-        {props.list.map((state, index) => {
-          if (state.path === router.asPath || state.path === null) {
-            return <li key={state.title}>{state.title}</li>;
-          } else {
-            return (
-              <>
-                <li key={state.title}>
-                  <Link href={state.path}>{state.title}</Link>
-                </li>
-                <li key={index}>
-                  <i className="fa-solid fa-forward"></i>
-                </li>
-              </>
-            );
-          }
-        })}
-      </ul>
+      <>
+        <Head>
+          <script
+            async
+            src="https://kit.fontawesome.com/acecca202b.js"
+            crossOrigin="anonymous"
+          ></script>
+        </Head>
+        <ul className={styles.breadList}>
+          {props.list.map((state, index) => {
+            if (state.path === router.asPath || state.path === null) {
+              return <li key={index}>{state.title}</li>;
+            } else {
+              return (
+                <>
+                  <li key={state.title + index}>
+                    <Link href={state.path}>{state.title}</Link>
+                  </li>
+                  <li key={'icon' + `${index}`}>
+                    <i className="fa-solid fa-forward"></i>
+                  </li>
+                </>
+              );
+            }
+          })}
+        </ul>
+      </>
     );
   }
 
-  return (
-    <>
-      <div>
-        <BreadState list={list} />
-      </div>
-    </>
-  );
+  return <BreadState list={list} />;
 }
