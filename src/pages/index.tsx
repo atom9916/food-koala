@@ -4,7 +4,7 @@ import Footer from 'components/footer';
 import BreadList, { menu_list } from 'components/bread_list';
 import Header from 'components/header';
 import useSWR, { useSWRConfig } from 'swr';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from 'styles/index.module.css';
 import modalStyle from 'styles/OrderListModal.module.css';
 import { Fetcher } from 'lib/Fetcher';

@@ -1,9 +1,11 @@
+.breadList {
+  display: block;
+  margin: 3px auto; 
+  position: absolute;
+  right: 3%;
+}
+
 @media screen and (max-width:670px) {
-  .breadList {
-    float: right;
-    margin: 3px auto; 
-  }
-  
   .breadList li{
     display: inline;
     list-style: none;
@@ -15,10 +17,6 @@
 }
 
 @media only screen and (min-width:671px) and (max-width:1023px) {
-  .breadList {
-    float: right;
-    margin: 3px auto; 
-  }
   
   .breadList li{
     display: inline;
@@ -31,10 +29,6 @@
 
 
 @media screen and (min-width:1024px) {
-  .breadList {
-    float: right;
-    margin: 3px auto; 
-  }
   
   .breadList li{
     display: inline;
@@ -44,7 +38,3 @@
     color: black;
   }
 }
-
-
-
-

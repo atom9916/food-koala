@@ -129,20 +129,15 @@ export default function OrderHistory() {
           <div className={`${styles.main} ${modalStyle[modalOpen]}`}>
             <Header openModal={openModal} />
             <BreadList list={[menu_list, order_history]} />
-            <div className={styles.favorite_login}>
-              <div className={styles.favorite_login_link}>
-                <Image
-                  src="/images/foodkoala_img2.png"
-                  alt="コアラ"
-                  width={300}
-                  height={300}
-                />
-                <br />
-                <br />
-                <Link href="/login">ログイン</Link>
-              </div>
-              <br />
-              <p>注文履歴を表示したい場合はログインをしてください</p>
+            <div className={styles.before_login}>
+              <Image
+                src="/images/foodkoala_img2.png"
+                alt="コアラ"
+                width={300}
+                height={300}
+              />
+              <Link href="/login">ログインする</Link>
+              <p>※注文履歴を表示したい場合はログインをしてください</p>
             </div>
             <Footer />
           </div>
@@ -164,23 +159,16 @@ export default function OrderHistory() {
           <div className={styles.main}>
             <Header openModal={openModal} />
             <BreadList list={[menu_list, order_history]} />
-            <main>
-              <div className={styles.favorite_login}>
-                <div className={styles.favorite_login_link}>
-                  <Image
-                    src="/images/foodkoala_img2.png"
-                    alt="コアラ"
-                    width={300}
-                    height={300}
-                  />
-                  <br />
-                  <br />
-                  <Link href="/">メニュー一覧へ</Link>
-                </div>
-                <br />
-                <p>注文履歴がありません</p>
-              </div>
-            </main>
+            <div className={styles.before_login}>
+              <Image
+                src="/images/foodkoala_img2.png"
+                alt="コアラ"
+                width={300}
+                height={300}
+              />
+              <p>※注文履歴がありません</p>
+              <Link href="/">メニューから注文する</Link>
+            </div>
             <Footer />
           </div>
         </div>
@@ -199,16 +187,14 @@ export default function OrderHistory() {
           <Header openModal={openModal} />
           <div className={`${styles.main} ${modalStyle.modalOpen}`}>
             <BreadList list={[menu_list, order_history]} />
-            <div className={styles.h1}>
-              <h1>注文履歴一覧</h1>
-            </div>
             <div className={styles.order_history}>
               <h2>
+                注文日：
                 {orderDate[data.length - pageId].getFullYear()}年
                 {orderDate[data.length - pageId].getMonth() + 1}月
-                {orderDate[data.length - pageId].getDate()}日
-                {orderDate[data.length - pageId].getHours()}時
-                {orderDate[data.length - pageId].getMinutes()}分
+                {orderDate[data.length - pageId].getDate()}日&nbsp;
+                {orderDate[data.length - pageId].getHours()}:
+                {orderDate[data.length - pageId].getMinutes()}
               </h2>
               <div>
                 <dl className={styles.dl}>
@@ -241,13 +227,12 @@ export default function OrderHistory() {
                     </dd>
                   </div>
                 </dl>
-                <div>
+                <div className={styles.map}>
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1620.2499744702093!2d139.70209411744383!3d35.689312900000026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d9c8bc1bfbb%3A0xcb44f68a614c714a!2z5qCq5byP5Lya56S-44Op44Kv44K544OR44O844OI44OK44O844K6!5e0!3m2!1sja!2sjp!4v1678233520521!5m2!1sja!2sjp"
-                    width="400"
-                    height="400"
+                    width="350"
+                    height="300"
                     loading="lazy"
-                    className={styles.map}
                   ></iframe>
                 </div>
                 {/* <div className={styles.link}>

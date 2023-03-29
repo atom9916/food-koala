@@ -1,39 +1,40 @@
 import styles from 'styles/order_list.module.css';
 import useSWR from 'swr';
 import { useState, useEffect } from 'react';
-import type { CartItem } from 'types/cart_item';
 import type { CurrentCartItems } from 'types/current_cart_items';
-import { Fetcher } from 'lib/Fetcher';
 import Image from 'next/image';
 import DeleteButton from 'components/DeleteButton';
+import { CartItem } from 'types/cart_item';
 
-export default function OrderList() {
+export default function OrderList({ data }: any) {
   const [cartItems, setCartItems] = useState<CurrentCartItems[]>([]);
   const [subTotal, setSubTotal] = useState(0);
-  //cart_itemsテーブルからデータを取得
-  const { data, error } = useSWR('/api/get_cart_items', Fetcher);
-  let itemId: CartItem[] = data;
+  const cartItemData: CartItem[] = data;
 
   //item_idが一致する商品のデータを取得
   useEffect(() => {
-    if (!data) {
+    if (!data || !cartItemData) {
       return;
     }
     async function itemData() {
       const newCartItems: CurrentCartItems[] = [];
-      for (let i = 0; i <= itemId.length - 1; i++) {
+      for (let i = 0; i <= cartItemData.length - 1; i++) {
         await fetch(
-          `/api/menu?genre_id=gt.0&area_id=gt.0&id=eq.${itemId[i].item_id}`
+          `/api/menu?genre_id=gt.0&area_id=gt.0&id=eq.${cartItemData[i].item_id}`
         )
           .then((res) => res.json())
           .then((data) => {
-            newCartItems.push({ ...data[0], count: itemId[i].count });
+            newCartItems.push({
+              ...data[0],
+              count: cartItemData[i].count,
+              cart_itemId: cartItemData[i].id,
+            });
           });
       }
       setCartItems(newCartItems);
     }
     itemData();
-  }, [data, itemId]);
+  }, [data, cartItemData]);
 
   //商品の小計を計算
   useEffect(() => {
@@ -43,9 +44,6 @@ export default function OrderList() {
     );
     setSubTotal(add);
   }, [cartItems, subTotal]);
-
-  if (error) <div>Error...</div>;
-  if (!data) <div>Loading...</div>;
 
   if (cartItems.length === 0) {
     return (
@@ -63,7 +61,7 @@ export default function OrderList() {
     <div className={styles.main}>
       <div>
         {cartItems.map((item, index) => (
-          <dl key={item.id}>
+          <dl key={index}>
             <dt>{item.name}</dt>
             <dd>
               <Image
@@ -103,7 +101,7 @@ export default function OrderList() {
             </dd>
             <dd>{item.price * item.count}円</dd>
             <dd>
-              <DeleteButton value={item.id} />
+              <DeleteButton value={item.cart_itemId} />
             </dd>
           </dl>
         ))}

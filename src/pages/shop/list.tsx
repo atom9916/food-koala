@@ -87,7 +87,7 @@ export default function ShopList() {
         <div className={modalStyle[modal]}>
           <OrderListModal closeModal={closeModal} />
         </div>
-        <main className={`${styles.main} ${modalStyle.modalOpen}`}>
+        <main className={`${styles.main} ${modalStyle[modalOpen]}`}>
           <Header openModal={openModal} />
           <BreadList list={[menu_list, shop_list]} />
           <aside className={styles.aside}>

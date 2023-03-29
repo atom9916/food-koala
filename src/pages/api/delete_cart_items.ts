@@ -6,8 +6,8 @@ export default async function CartItems(
 ) {
   try {
     const url = process.env['SUPABASE_URL'];
-    const id = req.query.item_id;
-    const response = await fetch(`${url}/cart_items?item_id=${id}`, {
+    const id = req.query.id;
+    const response = await fetch(`${url}/cart_items?id=${id}`, {
       method: req.method,
       headers: {
         apikey: `${process.env['SUPABASE_ANON_KEY']}`,

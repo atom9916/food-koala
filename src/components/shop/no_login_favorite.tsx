@@ -48,14 +48,11 @@ export default function NoLoginFavorite() {
                   width={300}
                   height={300}
                 />
-                <br />
-                <br />
-                <Link href="/login">ログイン</Link>
+                <Link href="/login">ログインする</Link>
+                <p>
+                  ※お気に入り店舗一覧を表示したい場合はログインをしてください
+                </p>
               </div>
-              <br />
-              <p>
-                お気に入り店舗一覧を表示したい場合はログインをしてください
-              </p>
             </div>
           </div>
           <Footer />

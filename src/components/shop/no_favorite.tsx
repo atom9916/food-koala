@@ -44,12 +44,9 @@ export default function NoFavorite() {
                   width={300}
                   height={300}
                 />
-                <br />
-                <br />
                 <Link href="/shop/list">ショップ一覧へ</Link>
+                <p>※お気に入り店舗がありません</p>
               </div>
-              <br />
-              <p>お気に入り店舗がありません</p>
             </div>
           </div>
           <Footer />

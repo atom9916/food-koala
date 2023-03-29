@@ -8,6 +8,7 @@ type CurrentCartItems = {
   area_id: number;
   explain: string;
   count: number;
+  cart_itemId: number;
 };
 
 export type { CurrentCartItems };

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Footer from 'components/footer';
 import Header from 'components/header';
 import BreadList, {
@@ -11,12 +11,20 @@ import type { Menu } from 'types/menu';
 import styles from 'styles/item_detail.module.css';
 import modalStyle from 'styles/OrderListModal.module.css';
 import OrderListModal from 'components/orderlist_modal';
+import useSWR, { useSWRConfig } from 'swr';
+import { Fetcher } from 'lib/Fetcher';
 
-export default function ItemPage({ data }: { data: Menu[] }) {
-  const item = data[0];
-  const [count, setCount] = useState(1);
+export default function ItemPage({ itemData }: { itemData: Menu[] }) {
+  const item = itemData[0];
   const [modal, setModal] = useState('close');
   const [modalOpen, setModalOpen] = useState('false');
+  const [count, setCount] = useState(0);
+
+  //cart_itemsテーブルからデータを取得
+  const { data, error } = useSWR('/api/get_cart_items', Fetcher);
+  const { mutate } = useSWRConfig();
+  if (error) return <div>Error...</div>;
+  if (!data) return <div>Loading...</div>;
 
   //カートアイコンがクリックされると、モーダルを表示し、背景を暗くする
   const openModal = () => {
@@ -32,21 +40,21 @@ export default function ItemPage({ data }: { data: Menu[] }) {
 
   async function cartSubmit(menuId: any) {
     try {
-      console.log(menuId);
-      const response = await fetch('/api/post_cart_items', {
+      await fetch('/api/post_cart_items', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           cart_id: 1,
           item_id: Number(menuId),
-          count: count,
+          count: count + 1,
         }),
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log(data);
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('POSTしました', data);
+          openModal();
+          mutate('/api/get_cart_items');
+        });
     } catch (error) {
       console.error(error);
     }
@@ -59,7 +67,7 @@ export default function ItemPage({ data }: { data: Menu[] }) {
       </Head>
       <div className={modalStyle.screen}>
         <div className={modalStyle[modal]}>
-          <OrderListModal closeModal={closeModal} />
+          <OrderListModal closeModal={closeModal} cartItems={data} />
         </div>
         <div className={modalStyle[modalOpen]}>
           <Header openModal={openModal} />
@@ -123,10 +131,10 @@ export async function getStaticProps({
       Authorization: `Bearer ${process.env['SUPABASE_ANON_KEY']}`,
     },
   });
-  const data = await response.json();
+  const itemData = await response.json();
   return {
     props: {
-      data,
+      itemData,
     },
   };
 }
