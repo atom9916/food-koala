@@ -8,13 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   width: 100%;
   margin: 0px auto;
 }
 
-.all_genre {
+.genre {
   width: 30%;
-  margin: auto;
 }
 
 .genre:hover {

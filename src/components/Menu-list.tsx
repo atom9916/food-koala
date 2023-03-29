@@ -10,7 +10,7 @@ export default function MenuList({ data, mutate }: any) {
 
   // ページ数を取得
   const pageCount =
-    data.length % 9 === 0 ? data.length / 9 : data.length / 9 + 1;
+    data.length % 6 === 0 ? data.length / 6 : data.length / 6 + 1;
 
   // ページ数の配列を作成
   let pageArr = [];
@@ -20,8 +20,8 @@ export default function MenuList({ data, mutate }: any) {
 
   // 9個分のメニューデータを作成
   let pagingData;
-  if (data.length >= 9) {
-    pagingData = data.slice(page * 9, page * 9 + 9);
+  if (data.length >= 6) {
+    pagingData = data.slice(page * 6, page * 6 + 6);
   } else {
     pagingData = data;
   }

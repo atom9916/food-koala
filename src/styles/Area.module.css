@@ -5,21 +5,18 @@
 }
 
 .all_area {
+  margin: 5%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  width: 100%;
-  margin: 10px auto;
+  justify-content:center;
+  flex-wrap: wrap;
 }
 
 .area {
-  margin: 10px auto;
+  margin: 5%;
 }
 
 .area button {
-  width: 100px;
-  height: auto;
+  width: 80px;
   font-weight: 700;
   font-size: 18px;
   border-radius: 10px;
@@ -36,11 +33,6 @@
 @media screen and (max-width:960px) {
   .area button {
     width: 75%;
-    height: 100%;
   }
-
-}
-
-@media screen and (max-width:700px) {
 
 }

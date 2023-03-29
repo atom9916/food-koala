@@ -37,7 +37,7 @@ export default function ShopList() {
 
   // ページ数を取得
   const pageCount =
-    data.length % 6 === 0 ? data.length / 6 : data.length / 6 + 1;
+    data.length % 3 === 0 ? data.length / 3 : data.length / 3 + 1;
 
   //ページ数の配列を作成
   let pageArr = [];
@@ -45,10 +45,10 @@ export default function ShopList() {
     pageArr.push(i);
   }
 
-  // 6個分のデータを作成
+  // 3個分のデータを作成
   let pagingData;
-  if (data.length >= 6) {
-    pagingData = data.slice(page * 6, page * 6 + 6);
+  if (data.length >= 3) {
+    pagingData = data.slice(page * 3, page * 3 + 3);
   } else {
     pagingData = data;
   }
