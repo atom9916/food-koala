@@ -45,7 +45,6 @@ export default function Favorite({
           <Header openModal={openModal} />
           <div className={styles.main}>
             <BreadList list={[menu_list, favorite_list]} />
-            <aside className={styles.aside}></aside>
             <ShopName data={favoriteShops} />
           </div>
           <Footer />

@@ -14,6 +14,7 @@ import BreadList, {
 import { Fetcher } from 'lib/Fetcher';
 import styles from 'styles/index.module.css';
 import modalStyle from 'styles/OrderListModal.module.css';
+import SortItems from 'components/sort';
 
 export default function ShopList() {
   const [genreId, setGenreId] = useState<string>('gt.0');

@@ -1,7 +1,7 @@
 .p{
   width: 100%;
   margin-left: 5%;
-  color: rgb(123, 116, 116);;
+  color: rgb(123, 116, 116);
 }
 
 .all_area {
@@ -25,6 +25,8 @@
   border-radius: 10px;
   border: 3px double  rgba(226, 143, 18, 0.3);
   background-color: white;
+  color: rgb(77, 72, 72);
+
 }
 
 .area button:hover {

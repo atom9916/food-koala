@@ -14,10 +14,8 @@ import BreadList, {
 import type { CartItem } from 'types/cart_item';
 import type { CurrentCartItems } from 'types/current_cart_items';
 import styles from 'styles/order_check.module.css';
-import modalStyle from 'styles/OrderListModal.module.css';
 import Cookies from 'js-cookie';
 import { Options } from 'types/options';
-import OrderListModal from 'components/orderlist_modal';
 
 export default function OrderCheck() {
   const userId = Cookies.get('user_id');
@@ -51,9 +49,7 @@ export default function OrderCheck() {
     async function itemData() {
       const newCartItems: CurrentCartItems[] = [];
       for (let i = 0; i <= itemId.length - 1; i++) {
-        await fetch(
-          `/api/menu?genre_id=gt.0&area_id=gt.0&id=eq.${itemId[i].item_id}`
-        )
+        await fetch(`/api/item?id=eq.${itemId[i].item_id}`)
           .then((res) => res.json())
           .then((data) => {
             newCartItems.push({ ...data[0], count: itemId[i].count });

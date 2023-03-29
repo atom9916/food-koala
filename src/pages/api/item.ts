@@ -1,16 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-// import fetch from 'isomorphic-unfetch';
 
 export default async function ItemData(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const id = req.query.shop_id;
   const url = process.env['SUPABASE_URL'];
-
+  const id = req.query.id;
+  // idで絞り込む場合のfetch
   if (id!.includes('eq')) {
     try {
-      const response = await fetch(`${url}/items?shop_id=${id}`, {
+      const response = await fetch(`${url}/items?id=${id}`, {
         headers: {
           apikey: `${process.env['SUPABASE_ANON_KEY']}`,
           Authorization: `Bearer ${process.env['SUPABASE_ANON_KEY']}`,

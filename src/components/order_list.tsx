@@ -19,9 +19,7 @@ export default function OrderList({ data }: any) {
     async function itemData() {
       const newCartItems: CurrentCartItems[] = [];
       for (let i = 0; i <= cartItemData.length - 1; i++) {
-        await fetch(
-          `/api/menu?genre_id=gt.0&area_id=gt.0&id=eq.${cartItemData[i].item_id}`
-        )
+        await fetch(`/api/item?id=eq.${cartItemData[i].item_id}`)
           .then((res) => res.json())
           .then((data) => {
             newCartItems.push({

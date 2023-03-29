@@ -7,7 +7,7 @@ import { MenuName } from 'lib/MenuName';
 
 export default function ShopMenu({ id }: { id: number }) {
   const { data, error } = useSWR(
-    `/api/menu_top2?shop_id=eq.${id}&genre_id=gt.0&area_id=gt.0`,
+    `/api/menu_top2?shop_id=eq.${id}`,
     Fetcher
   );
 

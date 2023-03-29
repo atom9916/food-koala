@@ -1,33 +1,12 @@
-import { SyntheticEvent, useState } from 'react';
-import useSWR, { useSWRConfig } from 'swr';
-import Head from 'next/head';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Area from 'components/area';
-import Genre from 'components/genre';
-import { Fetcher } from 'lib/Fetcher';
 import { MenuName } from 'lib/MenuName';
 import type { Menu } from 'types/menu';
 import styles from 'styles/Menu_list.module.css';
 
-export default function MenuList() {
-  const [genreId, setGenreId] = useState<string>('gt.0');
-  const [areaId, setAreaId] = useState<string>('gt.0');
-  const [count, setCount] = useState(1);
+export default function MenuList({ data, mutate }: any) {
   const [page, setPage] = useState(0);
-  const itemId = 'gt.0';
-
-  const { data, error } = useSWR(
-    `/api/menu?genreId=${genreId}&areaId=${areaId}&id=${itemId}`,
-    Fetcher,
-    {
-      revalidateOnMount: true,
-    }
-  );
-  const { mutate } = useSWRConfig();
-
-  if (error) return <div>エラーです</div>;
-  if (!data) return <div>Loading...</div>;
 
   // ページ数を取得
   const pageCount =
@@ -50,42 +29,9 @@ export default function MenuList() {
   if (!pagingData || pageArr.length === 0)
     return <div>Loading...</div>;
 
-  const handleGenreClick = (clickedId: any) => {
-    setAreaId('gt.0');
-    setGenreId(`eq.${clickedId}`);
-    mutate(
-      `/api/menu?genreId=${genreId}&areaId=${areaId}&id=${itemId}`
-    );
-  };
-
-  const handleAreaClick = (clickedId: any) => {
-    setGenreId('gt.0');
-    setAreaId(`eq.${clickedId}`);
-    mutate(
-      `/api/menu?areaId=${areaId}&genreId=${genreId}&id=${itemId}`
-    );
-  };
-
   return (
     <>
-      <Head>
-        <title>FoodKoala トップ</title>
-      </Head>
-      <aside className={styles.aside}>
-        <Genre
-          onClick={(e: SyntheticEvent) => {
-            const clickedId = e.currentTarget.id;
-            handleGenreClick(clickedId);
-          }}
-        />
-        <Area
-          onClick={(e: SyntheticEvent) => {
-            const clickedId = e.currentTarget.id;
-            handleAreaClick(clickedId);
-          }}
-        />
-      </aside>
-      <main className={styles.topPage}>
+      <div className={styles.topPage}>
         <div className={styles.all_menu}>
           {pagingData.map((menu: Menu) => (
             <div key={menu.id} className={styles.menu}>
@@ -121,7 +67,7 @@ export default function MenuList() {
             ))}
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }
