@@ -15,13 +15,11 @@ export function useGetScore(id: number): number | undefined {
   if (!data) return undefined;
 
   if (data) {
-    console.log('data', data);
     let sum = 0;
     for (let i = 0; i < data.length; i++) {
       sum += data[i].score;
     }
     const score: number = Number((sum / data.length).toFixed(1));
-    console.log('score', score);
     return score;
   }
 }

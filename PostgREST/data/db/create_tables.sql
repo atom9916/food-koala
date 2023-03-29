@@ -163,7 +163,7 @@ CREATE TABLE api.review (
     name    text NOT NULL,
     date    date NOT NULL,
     review  text NOT NULL,
-    image_url text,
+    -- image_url text,
     score  float NOT NULL
 );
 GRANT SELECT ON api.review TO web_anon;

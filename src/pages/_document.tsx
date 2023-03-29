@@ -5,6 +5,7 @@ import NextDocument, {
   NextScript,
 } from 'next/document';
 import styles from 'styles/index.module.css';
+import React from 'react';
 
 export default class Document extends NextDocument {
   render() {

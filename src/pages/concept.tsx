@@ -188,7 +188,7 @@ export default function TopPage() {
                 <h2>&nbsp;&nbsp;いますぐ始める&nbsp;&nbsp;</h2>
                 <div className={styles.start_flex_box}>
                   <div className={styles.start_box}>
-                    <Link href="/user_resister">
+                    <Link href="/user_register">
                       会員登録はこちら&nbsp;
                       <i className="fa-solid fa-users"></i>
                     </Link>

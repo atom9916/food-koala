@@ -5,6 +5,7 @@ import { SyntheticEvent, useState } from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import Image from 'next/image';
+import React from 'react';
 
 // login.tsの住所
 const url = '/api/login';
@@ -25,7 +26,7 @@ export default function Login() {
     })
       .then((response) => response.json())
 
-      // login.tsからGETしたdata.lengthが0じゃない(emailとPWが合致したuserが帰ってきてる)
+      // login.tsからGETしたdata.lengthが0じゃない(emailとPWが合致したuserが帰ってきている)
       .then((data) => {
         if (data.length !== 0) {
           console.log('success', data);

@@ -1,18 +1,19 @@
 .background {
     min-width: 100vw;
     width: 100%;
-    min-height: 100vh;
-    background-color: #f6f1ed;
+    height: 100%;
+    background-color: #fff;
+    margin: 0 auto;
 }
 
 .logo {
     text-align: center;
+    margin-top: 100px;
 }
 
 .logo h1 {
     margin-top: 0;
     color: #fff;
-    /* font-family: 'Cherry Swash', cursive; */
     -webkit-text-stroke: 1px #f7ad4d;
     text-shadow: 3px 3px #f7ad4d;
 }
@@ -20,10 +21,10 @@
 .form_position{
     background-color: #fff;
     width: 400px;
-    /* min-height: 100vh; */
     margin: 0px auto;
     padding: 0 30px;
     border: 1px solid #fff;
+    border-radius: 5px;
     box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -43,13 +44,29 @@
 }
 
 .form_position label {
-    background-color: #f7ad4d;
+    font-size: 13px;
     font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
-    color: #fff;
+    color: #2a1c0e;
+}
+
+.form_position input {
+    height: 30px;
+    border-radius: 3px;
+    caret-color: #b8a99a;
 }
 
 .form_position input:focus {
-    outline: 1px solid #b8a99a ;
+    outline: 2px solid #b8a99a ;
+}
+
+.name,
+.email,
+.zipcode,
+.address,
+.phone_number,
+.password,
+.password2 {
+    margin: 10px 0;
 }
 
 .name input,
@@ -69,38 +86,39 @@
     background-color: #f2f2f2;
 }
 
+.search_button {
+    cursor: pointer;
+}
+
 .ok {
     display: none;
     margin-top: 0;
     font-size: 12px;
 }
 .alert {
-    color: red;
+    font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+    color: rgb(255, 0, 0);
     margin-top: 0;
-    font-size: 12px;
+    font-size: 13px;
 }
 
-.search_button {
-
-}
-
-.password2 input {
-    margin-bottom: 10px;
-}
-.password2 {
-    border-bottom: 1px solid #01a174;
+.border {
+    margin: -5px 0 20px 0;
+    border-top: 1px solid #01a174;
 }
 
 .submit_button {
     display: block;
     text-align: center;
     width: 400px;
+    height: 30px;
     margin: 0 auto;
     margin-bottom: 20px;
     background-color: #f7ad4d;
     border-color: #f7ad4d;
     border-radius: 3px;
     color: #fff;
+    cursor: pointer;
 }
 
 .submit_button:hover {

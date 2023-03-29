@@ -19,7 +19,6 @@ export function validate(input: { [k: string]: string }): {
     address: 'ok',
     phone_number: 'ok',
     password: 'ok',
-    passwordValidation: 'ok',
     password2: 'ok',
   };
 
@@ -35,14 +34,6 @@ export function validate(input: { [k: string]: string }): {
     error.zipcode = 'alert';
   }
 
-  if (
-    !input.zipcode.match(
-      /^[0-9]{3}-[0-9]{4}$/ || /^[0-9]{3}[0-9]{4}$/
-    )
-  ) {
-    error.zipcode = 'alert';
-  }
-
   if (input.address === '') {
     error.address = 'alert';
   }
@@ -53,11 +44,6 @@ export function validate(input: { [k: string]: string }): {
 
   if (input.password === '') {
     error.password = 'alert';
-  }
-
-  if (!input.password.match(/^[A-Za-z0-9]+$/)) {
-    console.log('パスワードは半角英数で入力してください。');
-    error.passwordValidation;
   }
 
   if (input.password2 === '') {
@@ -89,13 +75,6 @@ export default function UserRegisterPage() {
     setModalOpen('false');
   };
 
-  // 半角英数指定のエラー表示
-  // const [validation, setValidation] = useState({
-  //   zipcode: 'ok',
-  //   phone_number: 'ok',
-  //   password: 'ok',
-  // });
-
   // 未入力時のエラー表示
   const [error, setError] = useState<{ [k: string]: string }>({
     name: 'ok',
@@ -104,17 +83,14 @@ export default function UserRegisterPage() {
     address: 'ok',
     phone_number: 'ok',
     password: 'ok',
-    passwordValidation: 'ok',
     password2: 'ok',
   });
-
-  const [errorZipcode, setErrorZipcode] = useState('ok');
 
   const [errorNoAddress, setErrorNoAddress] = useState('ok');
   // メールアドレスの重複エラー表示
   const [errorMail, setErrorMail] = useState('ok');
   // 文字数に対するエラー表示
-  const [lengthError, setLengthError] = useState('ok');
+  const [phoneLength, setPhoneLength] = useState('ok');
   const [passLength, setPassLength] = useState('ok');
   // パスワードが不一致のエラー表示
   const [mismatchPassword, setMismatchPassword] = useState('ok');
@@ -122,13 +98,6 @@ export default function UserRegisterPage() {
   const router = useRouter();
 
   function getZipcode() {
-    if (zipcode === '') {
-      console.log('※郵便番号を入力してください。');
-      setErrorZipcode('alert');
-      return;
-    }
-    setErrorZipcode('ok');
-
     fetch(
       `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${zipcode}`
     )
@@ -147,8 +116,8 @@ export default function UserRegisterPage() {
               data.results[0].address3
             }`
           );
+          setErrorNoAddress('ok');
         }
-        setErrorNoAddress('ok');
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -235,7 +204,7 @@ export default function UserRegisterPage() {
             <div className={styles.form_position}>
               <h2>新規会員登録</h2>
               <p className={styles.message}>
-                必要事項を入力し、登録ボタンを押してください。
+                必要事項を入力し、「登録する」ボタンを押してください。
               </p>
               <form
                 onSubmit={(e) => {
@@ -249,61 +218,94 @@ export default function UserRegisterPage() {
                     password,
                     password2,
                   });
-                  console.log(results);
+                  // console.log(results);
+
                   // 各項目が未入力だった場合、エラーを表示する
                   for (const prop in results) {
                     if (results[prop] === 'alert') {
                       setError(results);
-                      // console.log(results);
+                    } else {
+                      results[prop] === 'ok';
+                      setError(results);
+                      setErrorNoAddress('ok');
                     }
                   }
 
-                  // 電話番号が9~12文字（ハイフン有無問わず）以外の場合エラーを表示
-                  if (!phone_number.match(/^0[-\d]{9,12}$/)) {
+                  // 電話番号が10~12文字（ハイフン有無問わず）以外の場合エラーを表示
+                  if (
+                    phone_number !== '' &&
+                    !phone_number.match(/^0[-\d]{9,12}$/)
+                  ) {
                     console.log('※電話番号が正しくありません。');
-                    setLengthError('alert');
-                    return;
+                    setPhoneLength('alert');
+                  } else {
+                    setPhoneLength('ok');
                   }
-                  setLengthError('ok');
 
-                  if (password.length < 8 || password.length > 16) {
+                  // パスワードの文字数によってエラーを表示
+                  if (
+                    password !== '' &&
+                    (password.length < 8 || password.length > 16)
+                  ) {
                     console.log(
-                      'パスワードは8文字以上、16文字以内で入力してください'
+                      '※パスワードは8文字以上、16文字以内で入力してください'
                     );
                     setPassLength('alert');
-                    return;
+                  } else {
+                    setPassLength('ok');
                   }
-                  setPassLength('ok');
 
-                  if (password2 !== password) {
+                  // パスワードが一致していない場合エラーを表示
+                  if (
+                    password2.length > 0 &&
+                    password2 !== password
+                  ) {
                     console.log('※パスワードが一致していません。');
                     setMismatchPassword('alert');
-                    return;
+                    // return;
+                  } else {
+                    setMismatchPassword('ok');
                   }
-                  setMismatchPassword('ok');
 
-                  fetch('/api/get_users', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                      email: email,
-                    }),
-                  })
-                    .then((response) => response.json())
-                    .then((data) => {
-                      if (data.length > 0) {
-                        console.log(
-                          '※このメールアドレスは、既に使われています。'
-                        );
-                        setErrorMail('alert');
-                        return;
-                      }
-                      setErrorMail('ok');
-                    });
-
-                  userPost();
+                  // 登録済みメールアドレスの場合、エラーを表示する
+                  if (
+                    name !== '' &&
+                    email !== '' &&
+                    zipcode !== '' &&
+                    address !== '' &&
+                    phone_number !== '' &&
+                    password !== '' &&
+                    password2 !== '' &&
+                    phoneLength === 'ok' &&
+                    passLength === 'ok' &&
+                    mismatchPassword === 'ok'
+                  ) {
+                    fetch('/api/get_users', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        email: email,
+                      }),
+                    })
+                      .then((response) => response.json())
+                      .then((data) => {
+                        setErrorMail('ok');
+                        // 入力値が正しい場合はPOSTする
+                        if (data.length > 0 && email !== '') {
+                          console.log(
+                            '※このメールアドレスは、既に使われています。'
+                          );
+                          setErrorMail('alert');
+                          return;
+                        } else {
+                          setErrorMail('ok');
+                          userPost();
+                        }
+                        setErrorMail('ok');
+                      });
+                  }
                 }}
               >
                 <div className={styles.name}>
@@ -361,9 +363,6 @@ export default function UserRegisterPage() {
                   <p className={styles[error.zipcode]}>
                     ※郵便番号を入力してください。
                   </p>
-                  {/* <p className={styles[validation.zipcode]}>
-                ※郵便番号は、xxx-xxxxの形で入力してください。
-              </p> */}
                 </div>
 
                 <div className={styles.address}>
@@ -397,7 +396,7 @@ export default function UserRegisterPage() {
                   <p className={styles[error.phone_number]}>
                     ※電話番号を入力してください。
                   </p>
-                  <p className={styles[lengthError]}>
+                  <p className={styles[phoneLength]}>
                     ※電話番号が正しくありません。
                   </p>
                 </div>
@@ -418,9 +417,6 @@ export default function UserRegisterPage() {
                   </p>
                   <p className={styles[passLength]}>
                     ※パスワードは８文字以上１６文字以内で設定してください。
-                  </p>
-                  <p className={styles[error.passwordValidation]}>
-                    ※パスワードは半角英数で入力してください。
                   </p>
                 </div>
 
@@ -444,11 +440,12 @@ export default function UserRegisterPage() {
                   </p>
                 </div>
                 <br />
+                <div className={styles.border}></div>
                 <button
                   type="submit"
                   className={styles.submit_button}
                 >
-                  登録
+                  登録する
                 </button>
               </form>
             </div>

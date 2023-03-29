@@ -46,8 +46,8 @@ export default function InquiryCompleated() {
             <h1>お問い合わせ、ありがとうございました</h1>
             <p>後日、担当者よりご連絡差し上げます</p>
           </div>
-          <div>
-            <button type="submit" className={styles.button_design}>
+          <div className={styles.button_completed_position}>
+            <button type="submit" className={styles.button_completed}>
               <Link href="/">お買い物を続ける</Link>
             </button>
           </div>

@@ -119,12 +119,29 @@ border-bottom: solid 1px rgba(39, 19, 60, 0.5);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-  
+
+  /*ボタン*/
+
+  .button_inside {
+    background-color: #f8b856;
+    border: none;
+    border-radius: 3em;
+    width: 15%;
+    height: 5%;
+    padding: 2%;
+    margin: 3% 50% 3% 50%;
+    cursor: pointer;
+    font-size: 1vw;
 }
 
-
-
-
+.button_inside:hover{
+  opacity: 0.6;
+  transition: 0.3s;
+  box-shadow: #f2f2f2;
+  transform: rotateY(-2px);
+}
+  
+}
 
 
 /* タブレット */
@@ -243,6 +260,27 @@ border-bottom: solid 1px rgba(39, 19, 60, 0.5);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+  /*ボタン*/
+
+  .button_inside {
+    background-color: #f8b856;
+    border: none;
+    border-radius: 3em;
+    width: 15%;
+    height: 5%;
+    padding: 2%;
+    margin: 3% 50% 3% 50%;
+    cursor: pointer;
+    font-size: 1vw;
+}
+.button_inside:hover{
+  opacity: 0.6;
+  transition: 0.3s;
+  box-shadow: #f2f2f2;
+  transform: rotateY(-2px);
+}
+
 }
 
 
@@ -362,6 +400,26 @@ border-bottom: solid 1px rgba(28, 46, 83, 0.5);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+  /*ボタン*/
+
+  .button_inside {
+    background-color: #f8b856;
+    border: none;
+    border-radius: 3em;
+    width: 8%;
+    height: 10%;
+    margin: 3% 50% 3% 50%;
+    cursor: pointer;
+}
+
+.button_inside:hover{
+  opacity: 0.6;
+  transition: 0.3s;
+  box-shadow: #f2f2f2;
+  transform: rotateY(-2px);
+}
+
 }
 
 
