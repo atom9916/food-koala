@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Header from 'components/header';
+import { useKey } from 'react-use';
 import { useState } from 'react';
 import BreadList, {
   menu_list,
@@ -25,6 +26,9 @@ export default function LoadingFavorite() {
     setModal('close');
     setModalOpen('false');
   };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   return (
     <>

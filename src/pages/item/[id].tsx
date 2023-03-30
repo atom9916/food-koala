@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Head from 'next/head';
 import { useState } from 'react';
+import { useKey } from 'react-use';
 import Footer from 'components/footer';
 import Header from 'components/header';
 import BreadList, {
@@ -23,8 +24,6 @@ export default function ItemPage({ itemData }: { itemData: Menu[] }) {
   //cart_itemsテーブルからデータを取得
   const { data, error } = useSWR('/api/get_cart_items', Fetcher);
   const { mutate } = useSWRConfig();
-  if (error) return <div>Error...</div>;
-  if (!data) return <div>Loading...</div>;
 
   //カートアイコンがクリックされると、モーダルを表示し、背景を暗くする
   const openModal = () => {
@@ -37,6 +36,12 @@ export default function ItemPage({ itemData }: { itemData: Menu[] }) {
     setModal('close');
     setModalOpen('false');
   };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
+
+  if (error) return <div>Error...</div>;
+  if (!data) return <div>Loading...</div>;
 
   async function cartSubmit(menuId: any) {
     try {

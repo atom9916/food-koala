@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useKey } from 'react-use';
 import Image from 'next/image';
 import Header from '../components/header';
 import Footer from '../components/footer';
@@ -24,6 +25,9 @@ export default function TopPage() {
     setModal('close');
     setModalOpen('false');
   };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   return (
     <>

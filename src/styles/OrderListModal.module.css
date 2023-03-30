@@ -1,4 +1,51 @@
+.main dl{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3%;
+  padding: 2% 0;
+  border-bottom:1px solid #9bb0a5;
+  border-top: 1px solid #9bb0a5;
+}
+
+.main p {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: end;
+  margin: 3%;
+}
+
+.item_name {
+  width: 100%;
+  margin: 0 2%;
+}
+
+.item_image {
+  width: 40%;
+  margin: auto;
+}
+
+.item_count, .item_price, .delete_button{
+  width: 15%;
+  margin: auto;
+}
+
+
 /* モーダル用のCSS */
+
+.modal h1 {
+  text-align: center;
+}
+
+.closebtn {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 40px;
+  position: absolute;
+  top: 0;
+  right: 420px;
+}
+
 .screen {
   position: relative;
   top: 0;
@@ -11,7 +58,7 @@
 .close {
   position: absolute;
   top: 0;
-  right: -400px;
+  right: -50%;
   transition: all 0.7s ;
 }
 
@@ -30,9 +77,73 @@
 
 /* モーダルが開いている時の背景のCSS */
 .true {
-  width:100%;
+  width:100vw;
   height:100vw;
   position: fixed;
-  opacity: 0.3;
-  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  opacity: 0.5;
+  z-index: 10;
+}
+
+/* お会計へ進むボタン*/
+.transition_button {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid #f8b856;
+  border-radius: 5px;
+  background-color: #f1960c;
+  color: #fff;
+  box-shadow: 1px 2px #9bb0a5;
+  cursor: pointer;
+}
+
+.transition_button:hover {
+  opacity: 0.6;
+}
+
+.transition_button:active {
+  box-shadow: none;
+  transform: translateY(1px);
+}
+
+.ok {
+  display: none;
+}
+
+.alert {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-weight: bold;
+}
+
+
+/* メニュー一覧へボタン */
+.alert a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.alert button {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid #f8b856;
+  border-radius: 5px;
+  background-color: #f1960c;
+  color: #fff;
+  box-shadow: 1px 2px #9bb0a5;
+  cursor: pointer;
+}
+
+/* カートに商品がないとき */
+.noitem {
+  text-align: center;
 }

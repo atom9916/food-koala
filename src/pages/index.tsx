@@ -1,5 +1,6 @@
 import MenuList from 'components/Menu-list';
 import Head from 'next/head';
+import { useKey } from 'react-use';
 import Footer from 'components/footer';
 import BreadList, { menu_list } from 'components/bread_list';
 import Header from 'components/header';
@@ -27,6 +28,21 @@ export default function ItemListPage() {
     }
   );
   const { mutate } = useSWRConfig();
+
+  //カートアイコンがクリックされると、モーダルを表示し、背景を暗くする
+  const openModal = () => {
+    setModal('open');
+    setModalOpen('true');
+  };
+
+  //×ボタンがクリックされると、モーダルを非表示にし、背景を元に戻す
+  const closeModal = () => {
+    setModal('close');
+    setModalOpen('false');
+  };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   if (error) return <div>エラーです</div>;
   if (!data) return <div>Loading...</div>;
@@ -58,18 +74,6 @@ export default function ItemListPage() {
     console.log('並び替えました');
   };
 
-  //カートアイコンがクリックされると、モーダルを表示し、背景を暗くする
-  const openModal = () => {
-    setModal('open');
-    setModalOpen('true');
-  };
-
-  //×ボタンがクリックされると、モーダルを非表示にし、背景を元に戻す
-  const closeModal = () => {
-    setModal('close');
-    setModalOpen('false');
-  };
-
   return (
     <>
       <Head>
@@ -79,7 +83,8 @@ export default function ItemListPage() {
         <div className={modalStyle[modal]}>
           <OrderListModal closeModal={closeModal} />
         </div>
-        <main className={`${styles.main} ${modalStyle[modalOpen]}`}>
+        <div className={modalStyle[modalOpen]}></div>
+        <main className={styles.main}>
           <Header onClick={handleMenuClick} openModal={openModal} />
           <BreadList list={[menu_list]} />
           <aside className={styles.aside}>

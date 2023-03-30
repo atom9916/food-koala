@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import { useKey } from 'react-use';
 import Head from 'next/head';
 import Image from 'next/image';
 import Header from 'components/header';
@@ -109,6 +110,9 @@ export default function ShopDetail({ shopData }: ShopProps) {
     setModal('close');
     setModalOpen('false');
   };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import OrderList from './order_list';
-import styles from 'styles/order_list.module.css';
+import styles from 'styles/OrderListModal.module.css';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
@@ -40,7 +40,11 @@ export default function OrderListModal({
   if (itemId.length === 0) {
     return (
       <>
-        <div className={styles.modal}>
+        <div
+          role="orderlist_modal"
+          aria-modal
+          className={styles.modal}
+        >
           <h1>注文リスト</h1>
           <button className={styles.closebtn} onClick={closeModal}>
             &times;
@@ -59,7 +63,7 @@ export default function OrderListModal({
 
   return (
     <>
-      <div className={styles.modal}>
+      <div role="orderlist-modal" aria-modal className={styles.modal}>
         <h1>注文リスト</h1>
         <button className={styles.closebtn} onClick={closeModal}>
           &times;

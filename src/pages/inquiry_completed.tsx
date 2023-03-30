@@ -1,5 +1,6 @@
 import Header from 'components/header';
 import Footer from 'components/footer';
+import { useKey } from 'react-use';
 import Head from 'next/head';
 import styles from 'styles/Inquiry_form.module.css';
 import modalStyle from 'styles/OrderListModal.module.css';
@@ -23,6 +24,9 @@ export default function InquiryCompleated() {
     setModal('close');
     setModalOpen('false');
   };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   return (
     <>

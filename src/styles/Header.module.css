@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 5;
   height: 80px;
   width: 100%;
   display: flex;
@@ -15,8 +15,6 @@
 .header li {
   margin-right: 30px;
   padding: 10px 15px;
-  border-radius: 20px;
-  color: #fff;
   font-weight: 700;
   border-radius: 100vh;
   background-image: -webkit-gradient(
@@ -62,30 +60,29 @@
   display: none
 }
 
-.shoppingcart{
-  margin-left: 10px;
+.shoppingcart button{
   cursor: pointer;
   border: none;
-  background-color: white;
-}
-
-.shoppingcart img {
+  background-color: rgba(0, 0, 0, 0);
   position: absolute;
+  width: 40px;
   top: 25px;
   right: 2%;
 }
 
-.koala_on_cart{
-  margin-left: 25px;
+.koala_on_cart button{
   cursor: pointer;
   border: none;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 15px;
+  right: 1%;
 }
 
 .koala_on_cart span{
   position: absolute;
-  top: 23px;
-  right: 40px;
+  top: 9px;
+  right: 33px;
   background-color: #e97007;
   color: #fff;
   font-size: 12px;
@@ -96,12 +93,6 @@
   text-align: center;
 }
 
-.koala_on_cart img {
-  position: absolute;
-  top: 15px;
-  right: 1%;
-}
-
 /* ハンバーガーメニュー用 */
 .hamburger input {
   display: none;
@@ -109,6 +100,7 @@
 
 .hamburger {
   margin-right: 2%;
+  width: 55%;
 }
 
 @media screen and (max-width:768px) {

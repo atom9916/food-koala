@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { SyntheticEvent, useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
+import { useKey } from 'react-use';
 import ShopName from '../../components/shop_name';
 import Header from 'components/header';
 import Genre from 'components/genre';
@@ -14,7 +15,6 @@ import BreadList, {
 import { Fetcher } from 'lib/Fetcher';
 import styles from 'styles/index.module.css';
 import modalStyle from 'styles/OrderListModal.module.css';
-import SortItems from 'components/sort';
 
 export default function ShopList() {
   const [genreId, setGenreId] = useState<string>('gt.0');
@@ -31,6 +31,21 @@ export default function ShopList() {
     }
   );
   const { mutate } = useSWRConfig();
+
+  //カートアイコンがクリックされると、モーダルを表示し、背景を暗くする
+  const openModal = () => {
+    setModal('open');
+    setModalOpen('true');
+  };
+
+  //×ボタンがクリックされると、モーダルを非表示にし、背景を元に戻す
+  const closeModal = () => {
+    setModal('close');
+    setModalOpen('false');
+  };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   if (error) return <div>エラーです</div>;
   if (!data) return <div>Loading...</div>;
@@ -65,18 +80,6 @@ export default function ShopList() {
     setAreaId(`eq.${clickedId}`);
     console.log(clickedId);
     mutate(`/api/shop?areaId=${areaId}&genreId=${genreId}`);
-  };
-
-  //カートアイコンがクリックされると、モーダルを表示し、背景を暗くする
-  const openModal = () => {
-    setModal('open');
-    setModalOpen('true');
-  };
-
-  //×ボタンがクリックされると、モーダルを非表示にし、背景を元に戻す
-  const closeModal = () => {
-    setModal('close');
-    setModalOpen('false');
   };
 
   return (

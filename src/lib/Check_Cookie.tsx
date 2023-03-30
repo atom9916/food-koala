@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import styles from 'styles/order_list.module.css';
+import styles from 'styles/OrderListModal.module.css';
 
 //cookieの有無を確認し、ログインしていれば注文確認ページへ
 

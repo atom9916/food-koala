@@ -2,6 +2,7 @@ import BreadList, {
   menu_list,
   inquiry_form,
 } from 'components/bread_list';
+import { useKey } from 'react-use';
 import Header from 'components/header';
 import Footer from 'components/footer';
 import Head from 'next/head';
@@ -27,6 +28,9 @@ export default function InquiryForm() {
     setModal('close');
     setModalOpen('false');
   };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   return (
     <>

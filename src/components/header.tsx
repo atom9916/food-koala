@@ -63,30 +63,27 @@ export default function Header({ onClick, openModal }: any) {
           {/* ここまでハンバーガーメニュー */}
           <nav className={styles.nav}>
             <ul>
-              <li>
-                <Link href="/" onClick={onClick}>
-                  メニュー
-                </Link>
-              </li>
-              <li>
-                <Link href="/shop/list">ショップ</Link>
-              </li>
-              <li>
-                <Link href="/shop/favorite">お気に入り</Link>
-              </li>
-              <li>
-                <Link href="/order/order_history">注文履歴</Link>
-              </li>
-              <li className={styles[loginStatus]}>
-                <Link href="/login">ログイン</Link>
-              </li>
+              <Link href="/" onClick={onClick}>
+                <li>メニュー</li>
+              </Link>
+              <Link href="/shop/list">
+                <li>ショップ</li>
+              </Link>
+              <Link href="/shop/favorite">
+                <li>お気に入り</li>
+              </Link>
+              <Link href="/order/order_history">
+                <li>注文履歴</li>
+              </Link>
+              <Link href="/login">
+                <li className={styles[loginStatus]}>ログイン</li>
+              </Link>
               <Logout className={styles[logoutStatus]} />
             </ul>
-            <div className={styles[noItemCart]}>
-              <button
-                className={styles.shoppingcart}
-                onClick={openModal}
-              >
+            <div
+              className={`${styles[noItemCart]} ${styles.shoppingcart}`}
+            >
+              <button onClick={openModal}>
                 <Image
                   alt="ショッピングカートのアイコン"
                   src="/images/shoppingcart.icon.png"
@@ -95,11 +92,10 @@ export default function Header({ onClick, openModal }: any) {
                 />
               </button>
             </div>
-            <div className={styles[koalaOnCart]}>
-              <button
-                className={styles.koala_on_cart}
-                onClick={openModal}
-              >
+            <div
+              className={`${styles[koalaOnCart]} ${styles.koala_on_cart}`}
+            >
+              <button onClick={openModal}>
                 <Image
                   alt="ショッピングカートのアイコン"
                   src="/images/koala-on-cart.png"

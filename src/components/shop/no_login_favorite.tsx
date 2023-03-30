@@ -1,5 +1,6 @@
 import Header from 'components/header';
 import Footer from 'components/footer';
+import { useKey } from 'react-use';
 import BreadList, {
   menu_list,
   favorite_list,
@@ -26,6 +27,9 @@ export default function NoLoginFavorite() {
     setModal('close');
     setModalOpen('false');
   };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   return (
     <>

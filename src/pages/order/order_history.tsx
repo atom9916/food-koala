@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useKey } from 'react-use';
 import useSWR from 'swr';
 import { useEffect, useState } from 'react';
 import BreadList, {
@@ -36,6 +37,9 @@ export default function OrderHistory() {
     setModal('close');
     setModalOpen('false');
   };
+
+  //エスケープボタンが押された時にモーダルを閉じる
+  useKey('Escape', closeModal);
 
   //order_historyテーブルから注文内容を取得
   const { data, error } = useSWR(

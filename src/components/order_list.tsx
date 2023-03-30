@@ -1,5 +1,4 @@
-import styles from 'styles/order_list.module.css';
-import useSWR from 'swr';
+import styles from 'styles/OrderListModal.module.css';
 import { useState, useEffect } from 'react';
 import type { CurrentCartItems } from 'types/current_cart_items';
 import Image from 'next/image';
@@ -46,7 +45,7 @@ export default function OrderList({ data }: any) {
   if (cartItems.length === 0) {
     return (
       <>
-        <div className={styles.main}>
+        <div className={styles.noitem}>
           <br />
           <p>カートに商品はありません</p>
           <br />
@@ -57,54 +56,54 @@ export default function OrderList({ data }: any) {
 
   return (
     <div className={styles.main}>
-      <div>
-        {cartItems.map((item, index) => (
-          <dl key={index}>
-            <dt>{item.name}</dt>
-            <dd>
-              <Image
-                src={item.image_url}
-                alt="商品画像"
-                width={150}
-                height={150}
-              />
-            </dd>
-            <dd>
-              <select
-                name="itemCount"
-                id={`itemCount-${index}`}
-                onChange={async (e) => {
-                  const selectedCount = e.target.value;
-                  const newCartItems = [...cartItems];
-                  newCartItems[index].count = parseInt(selectedCount);
-                  setCartItems(newCartItems);
-                  await fetch(`/api/patch_cart_items`, {
-                    method: 'PATCH',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                      item_id: Number(item.id),
-                      count: Number(selectedCount),
-                    }),
-                  });
-                }}
-                value={item.count}
-              >
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-              </select>
-              個
-            </dd>
-            <dd>{item.price * item.count}円</dd>
-            <dd>
-              <DeleteButton value={item.cart_itemId} />
-            </dd>
-          </dl>
-        ))}
-        <p>小計：{subTotal}円</p>
-      </div>
+      {cartItems.map((item, index) => (
+        <dl key={index}>
+          <dt className={styles.item_name}>{item.name}</dt>
+          <dd className={styles.item_image}>
+            <Image
+              src={item.image_url}
+              alt="商品画像"
+              width={100}
+              height={100}
+            />
+          </dd>
+          <dd className={styles.item_count}>
+            <select
+              name="itemCount"
+              id={`itemCount-${index}`}
+              onChange={async (e) => {
+                const selectedCount = e.target.value;
+                const newCartItems = [...cartItems];
+                newCartItems[index].count = parseInt(selectedCount);
+                setCartItems(newCartItems);
+                await fetch(`/api/patch_cart_items`, {
+                  method: 'PATCH',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    item_id: Number(item.id),
+                    count: Number(selectedCount),
+                  }),
+                });
+              }}
+              value={item.count}
+            >
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+            </select>
+            個
+          </dd>
+          <dd className={styles.item_price}>
+            {item.price * item.count}円
+          </dd>
+          <dd className={styles.delete_button}>
+            <DeleteButton value={item.cart_itemId} />
+          </dd>
+        </dl>
+      ))}
+      <p>小計：{subTotal}円</p>
     </div>
   );
 }
