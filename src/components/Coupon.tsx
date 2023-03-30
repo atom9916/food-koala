@@ -85,7 +85,7 @@ export default function Coupon({
               name="container"
               onClick={onClick}
             />
-            する
+            <label htmlFor="true">する</label>
           </dd>
           <dd>
             <input
@@ -94,7 +94,7 @@ export default function Coupon({
               name="container"
               onClick={onClick}
             />
-            しない
+            <label htmlFor="false">しない</label>
           </dd>
         </dl>
         <p>値引き合計：{calcDiscount}円</p>
