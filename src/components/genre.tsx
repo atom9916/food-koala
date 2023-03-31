@@ -10,8 +10,13 @@ export default function Genre({ onClick }: any) {
     revalidateOnMount: true,
   });
 
-  if (error) return <div>エラーです</div>;
-  if (!data) return <div>データがありませんでした</div>;
+  if (error) return <div>Error...</div>;
+  if (!data)
+    return (
+      <>
+        <p className={styles.p}>▶︎ジャンルで絞り込む</p>
+      </>
+    );
 
   return (
     <>

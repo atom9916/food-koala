@@ -1,17 +1,18 @@
 .footer {
   background-color: white;
-  height: 80px;
+  height: 100px;
   width: 100%;
   display: flex;
   justify-content: right;
-  align-items: center;
   border-top: 2px solid rgba(189, 140, 66, 0.5);
+  z-index: 8;
 }
 
 .link {
   text-decoration: none;
   color: #4f4842;
   margin-right: 30px;
+  margin-top: 30px;
   font-weight: 700;
 }
 

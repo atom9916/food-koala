@@ -38,6 +38,8 @@
 
 .header ul {
   display: flex;
+  justify-content: end;
+  width: 90%;
   list-style: none;
 }
 
@@ -100,22 +102,24 @@
 
 .hamburger {
   margin-right: 2%;
-  width: 55%;
+  width: 100%;
 }
 
 @media screen and (max-width:768px) {
+  .header {
+    display: block;
+  }
+  
   .logo {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 0 auto;
     width: 100%;
-  }
-
-  .hamburger {
-    width: 50px;
-    height: 50px;
+    height: 80px;
   }
   
+  /* ハンバーガーメニュー */
   .nav {
     display: block;
     min-width: 100vw;
@@ -125,7 +129,7 @@
     left: 100%;
     z-index: 80;
     background-color: #f7ad4d;
-    opacity: 0.8;
+    opacity: 0.9;
     transition: all 0.5s;
   }
 
@@ -147,12 +151,11 @@
 
   .nav a {
     color: #fff;
-    /* border-bottom: 1px solid #000; */
   }
 
   .menu_btn {
     position: fixed;
-    top: 5px; 
+    top: 15px; 
     right: 5px;
     display: flex;
     height: 50px;
@@ -171,7 +174,7 @@
     height: 3px;
     width: 30px;
     border-radius: 3px;
-    background-color: #ffffff;
+    background-color: #212121;
     position: absolute;
   }
 
@@ -197,4 +200,30 @@
     transition: 0.5s;
     transform: rotate(-45deg);
   }
+
+  .shoppingcart button{
+    position: absolute;
+    width: 40px;
+    top: 25px;
+    right: 60px;
+  }
+
+  .koala_on_cart button{
+    position: absolute;
+    top: 15px;
+    right: 50px;
+  }
+  
+  .koala_on_cart span{
+    position: absolute;
+    top: 9px;
+    right: 33px;
+    font-size: 12px;
+    font-weight: 700;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    text-align: center;
+  }
+  
 }

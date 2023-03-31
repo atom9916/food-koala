@@ -20,7 +20,7 @@ import OrderListModal from 'components/orderlist_modal';
 
 export default function OrderHistory() {
   const [orderDate, setOrderDate] = useState<Date[]>([]);
-  const [orderItems, setOrderItems] = useState<OrderItems[]>([]);
+  const [orderItems, setOrderItems] = useState<OrderItems[]>();
   const [pageId, setPageId] = useState(1);
   const userId = Cookies.get('user_id');
   const [modal, setModal] = useState('close');
@@ -93,7 +93,7 @@ export default function OrderHistory() {
 
   if (error) return <div>Error...</div>;
 
-  if (!data) {
+  if (!data || !orderItems) {
     return (
       <>
         <Head>
@@ -109,9 +109,7 @@ export default function OrderHistory() {
             <div className={styles.h1}>
               <h1>注文履歴一覧</h1>
             </div>
-            <div>
-              <h2>Loading...</h2>
-            </div>
+            <div>Loading...</div>
             <Footer />
           </div>
         </div>
@@ -239,9 +237,6 @@ export default function OrderHistory() {
                     loading="lazy"
                   ></iframe>
                 </div>
-                {/* <div className={styles.link}>
-              <Link href={'注文詳細'}>詳細を見る</Link>
-            </div> */}
               </div>
             </div>
             <div className={styles.buttons}>

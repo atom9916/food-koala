@@ -23,16 +23,21 @@
   border: 3px double  rgba(226, 143, 18, 0.3);
   background-color: white;
   color: rgb(77, 72, 72);
-
 }
 
 .area button:hover {
   opacity: 0.6;
 }
 
-@media screen and (max-width:960px) {
+@media screen and (max-width:768px) {
+  .area {
+    margin: auto;
+  }
+
   .area button {
-    width: 75%;
+    width: 55px;
+    font-size: 12px;
+    margin: 0;
   }
 
 }

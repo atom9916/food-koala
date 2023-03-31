@@ -1,0 +1,35 @@
+
+/* 検索アイコン */
+.search_icon {
+  display: none;
+}
+
+.false {
+  display: none;
+}
+
+@media  screen and (max-width:768px){
+  /* 検索アイコン */
+  .search_icon {
+    display: block;
+    position: absolute;
+    top: 27px;
+    left: 20px;
+  }
+
+  .true {
+    display: block;
+    position: absolute;
+    top: 80px;
+    left:0;
+    transition: 1s;
+  }
+
+  .false {
+    display: block;
+    position: absolute;
+    top: 80px;
+    left: -100vw;
+    transition: 0.8s;
+  }
+}

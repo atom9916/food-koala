@@ -9,8 +9,13 @@ export default function Area({ onClick }: any) {
     revalidateOnMount: true,
   });
 
-  if (error) return <div>Fail to Laod...</div>;
-  if (!data) return <div>Loading...</div>;
+  if (error) return <div>Error...</div>;
+  if (!data)
+    return (
+      <>
+        <p className={styles.p}>▶︎エリアで絞り込む</p>
+      </>
+    );
 
   return (
     <>
