@@ -51,3 +51,13 @@
     box-shadow: none;
     transform: translateY(1px);
 }
+
+@media screen and (max-width: 780px) {
+    .main {
+        margin-top: 120px;
+    }
+
+    .item_detail {
+        width: 80%;
+    }
+}

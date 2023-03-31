@@ -9,26 +9,45 @@ export default function Aside({
   handleAreaClick,
   sortMenu,
 }: any) {
-  return (
-    <aside className={styles.aside}>
-      <SortItems
-        onChange={(e: any) => {
-          const clickedValue = e.target.value;
-          sortMenu(clickedValue);
-        }}
-      />
-      <Genre
-        onClick={(e: SyntheticEvent) => {
-          const clickedId = e.currentTarget.id;
-          handleGenreClick(clickedId);
-        }}
-      />
-      <Area
-        onClick={(e: SyntheticEvent) => {
-          const clickedId = e.currentTarget.id;
-          handleAreaClick(clickedId);
-        }}
-      />
-    </aside>
-  );
+  if (!sortMenu) {
+    return (
+      <aside className={styles.aside}>
+        <Genre
+          onClick={(e: SyntheticEvent) => {
+            const clickedId = e.currentTarget.id;
+            handleGenreClick(clickedId);
+          }}
+        />
+        <Area
+          onClick={(e: SyntheticEvent) => {
+            const clickedId = e.currentTarget.id;
+            handleAreaClick(clickedId);
+          }}
+        />
+      </aside>
+    );
+  } else {
+    return (
+      <aside className={styles.aside}>
+        <SortItems
+          onChange={(e: any) => {
+            const clickedValue = e.target.value;
+            sortMenu(clickedValue);
+          }}
+        />
+        <Genre
+          onClick={(e: SyntheticEvent) => {
+            const clickedId = e.currentTarget.id;
+            handleGenreClick(clickedId);
+          }}
+        />
+        <Area
+          onClick={(e: SyntheticEvent) => {
+            const clickedId = e.currentTarget.id;
+            handleAreaClick(clickedId);
+          }}
+        />
+      </aside>
+    );
+  }
 }

@@ -6,13 +6,8 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Logout from 'lib/Logout';
 import Shoppingcart from './Shoppingcart';
-import SearchModal from './Search_modal';
 
-export default function Header({
-  openModal,
-  openSearchModal,
-  searchModal,
-}: any) {
+export default function Header({ openModal }: any) {
   const user_id = Cookies.get('user_id');
   const [loginStatus, setLoginStatus] = useState('true');
   const [logoutStatus, setLogoutStatus] = useState('false');
@@ -27,10 +22,6 @@ export default function Header({
   return (
     <>
       <header className={styles.header}>
-        <SearchModal
-          openSearchModal={openSearchModal}
-          searchModal={searchModal}
-        />
         <div className={styles.logo}>
           <Link href="/">
             <Image
@@ -38,6 +29,7 @@ export default function Header({
               alt="header-logo"
               width={170}
               height={170}
+              className={styles.logo_img}
             />
           </Link>
         </div>

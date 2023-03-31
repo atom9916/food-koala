@@ -5,13 +5,13 @@ import BreadList, {
   menu_list,
   favorite_list,
 } from 'components/bread_list';
-import ShopName from 'components/shop_name';
 import Footer from 'components/footer';
 import { Shop } from 'types/shops';
 import styles from 'styles/favorite.module.css';
 import modalStyle from 'styles/OrderListModal.module.css';
 import { useState } from 'react';
 import OrderListModal from 'components/orderlist_modal';
+import FavoriteShopName from './favorite_shop_name';
 
 export default function Favorite({
   favoriteShops,
@@ -49,7 +49,7 @@ export default function Favorite({
           <Header openModal={openModal} />
           <div className={styles.main}>
             <BreadList list={[menu_list, favorite_list]} />
-            <ShopName favoriteData={favoriteShops} />
+            <FavoriteShopName favoriteData={favoriteShops} />
           </div>
           <Footer />
         </div>

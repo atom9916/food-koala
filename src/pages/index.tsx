@@ -45,13 +45,12 @@ export default function ItemListPage() {
         </div>
         <div className={modalStyle[modalOpen]}></div>
         <main className={styles.main}>
-          <Header
-            openModal={openModal}
+          <Header openModal={openModal} />
+          <BreadList list={[menu_list]} />
+          <MenuList
             openSearchModal={openSearchModal}
             searchModal={searchModal}
           />
-          <BreadList list={[menu_list]} />
-          <MenuList />
           <Footer />
         </main>
       </div>

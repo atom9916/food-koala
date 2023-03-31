@@ -242,3 +242,17 @@
   height:30px;
   cursor: pointer;
 }
+
+@media screen and (max-width:780px) {
+  .contents {
+    margin: 20px auto;
+  }
+
+  .shop_id_image {
+    width: 100%;
+  }
+  
+  .shop_id_menu_list {
+    width: 100%;
+  }
+}

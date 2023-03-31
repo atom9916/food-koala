@@ -16,6 +16,7 @@ import Aside from 'components/Aside';
 export default function ShopList() {
   const [modal, setModal] = useState('close');
   const [modalOpen, setModalOpen] = useState('false');
+  const [searchModal, setSearchModal] = useState(false);
 
   //カートアイコンがクリックされると、モーダルを表示し、背景を暗くする
   const openModal = () => {
@@ -27,6 +28,11 @@ export default function ShopList() {
   const closeModal = () => {
     setModal('close');
     setModalOpen('false');
+  };
+
+  // スマホサイズの時に検索用モーダルを開閉する
+  const openSearchModal = () => {
+    setSearchModal(!searchModal);
   };
 
   //エスケープボタンが押された時にモーダルを閉じる
@@ -44,7 +50,10 @@ export default function ShopList() {
         <main className={`${styles.main} ${modalStyle[modalOpen]}`}>
           <Header openModal={openModal} />
           <BreadList list={[menu_list, shop_list]} />
-          <ShopName />
+          <ShopName
+            openSearchModal={openSearchModal}
+            searchModal={searchModal}
+          />
           <Footer />
         </main>
       </div>

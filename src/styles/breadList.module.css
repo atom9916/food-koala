@@ -2,10 +2,16 @@
   display: block;
   margin: 3px auto; 
   position: absolute;
-  right: 3%;
+  left: 3%;
 }
 
-@media screen and (max-width:670px) {
+@media screen and (max-width:780px) {
+  .breadList {
+    position: absolute;
+    top: 80px;
+    left: 0 ;
+  }
+
   .breadList li{
     display: inline;
     list-style: none;
@@ -16,7 +22,7 @@
   }
 }
 
-@media only screen and (min-width:671px) and (max-width:1023px) {
+@media only screen and (min-width:780px) and (max-width:1023px) {
   
   .breadList li{
     display: inline;

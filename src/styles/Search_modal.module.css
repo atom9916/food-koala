@@ -8,13 +8,18 @@
   display: none;
 }
 
+.true {
+  display: none;
+}
+
 @media  screen and (max-width:768px){
   /* 検索アイコン */
   .search_icon {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 27px;
     left: 20px;
+    z-index: 10;
   }
 
   .true {

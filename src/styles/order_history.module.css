@@ -120,7 +120,15 @@
 @media screen and (max-width:780px){
 
     .order_history {
-        width: 85%;
+        width: 75%;
+        margin-top: 120px;
     }
 
+    .order_history h2 {
+        font-size: 14px;
+    }
+
+    .map iframe{
+        width: 100%;
+    }
 }

@@ -7,8 +7,12 @@ import styles from 'styles/Menu_list.module.css';
 import { Fetcher } from 'lib/Fetcher';
 import useSWR, { useSWRConfig } from 'swr';
 import Aside from './Aside';
+import SearchModal from './Search_modal';
 
-export default function MenuList() {
+export default function MenuList({
+  openSearchModal,
+  searchModal,
+}: any) {
   const [page, setPage] = useState(0);
   const [genreId, setGenreId] = useState<string>('gt.0');
   const [areaId, setAreaId] = useState<string>('gt.0');
@@ -70,6 +74,13 @@ export default function MenuList() {
 
   return (
     <>
+      <SearchModal
+        openSearchModal={openSearchModal}
+        searchModal={searchModal}
+        handleGenreClick={handleGenreClick}
+        handleAreaClick={handleAreaClick}
+        sortMenu={sortMenu}
+      />
       <div className={styles.topPage_aside}>
         <Aside
           handleGenreClick={handleGenreClick}

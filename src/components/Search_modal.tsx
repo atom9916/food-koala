@@ -6,6 +6,9 @@ import { useKey } from 'react-use';
 export default function SearchModal({
   openSearchModal,
   searchModal,
+  handleGenreClick,
+  handleAreaClick,
+  sortMenu,
 }: any) {
   return (
     <>
@@ -18,7 +21,11 @@ export default function SearchModal({
         onClick={openSearchModal}
       />
       <div className={styles[searchModal]}>
-        <Aside />
+        <Aside
+          handleGenreClick={handleGenreClick}
+          handleAreaClick={handleAreaClick}
+          sortMenu={sortMenu}
+        />
       </div>
     </>
   );

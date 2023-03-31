@@ -93,30 +93,6 @@ export default function OrderHistory() {
 
   if (error) return <div>Error...</div>;
 
-  if (!data || !orderItems) {
-    return (
-      <>
-        <Head>
-          <title>注文履歴</title>
-        </Head>
-        <div className={modalStyle.screen}>
-          <div className={modalStyle[modal]}>
-            <OrderListModal closeModal={closeModal} />
-          </div>
-          <div className={styles.main}>
-            <Header openModal={openModal} />
-            <BreadList list={[menu_list, order_history]} />
-            <div className={styles.h1}>
-              <h1>注文履歴一覧</h1>
-            </div>
-            <div>Loading...</div>
-            <Footer />
-          </div>
-        </div>
-      </>
-    );
-  }
-
   //ログイン前（cookieなし）はログインを促す
   if (userId === null || userId === undefined) {
     return (
@@ -141,6 +117,30 @@ export default function OrderHistory() {
               <Link href="/login">ログインする</Link>
               <p>※注文履歴を表示したい場合はログインをしてください</p>
             </div>
+            <Footer />
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (!data || !orderItems) {
+    return (
+      <>
+        <Head>
+          <title>注文履歴</title>
+        </Head>
+        <div className={modalStyle.screen}>
+          <div className={modalStyle[modal]}>
+            <OrderListModal closeModal={closeModal} />
+          </div>
+          <div className={styles.main}>
+            <Header openModal={openModal} />
+            <BreadList list={[menu_list, order_history]} />
+            <div className={styles.h1}>
+              <h1>注文履歴一覧</h1>
+            </div>
+            <div>Loading...</div>
             <Footer />
           </div>
         </div>
