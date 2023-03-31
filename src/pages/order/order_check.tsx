@@ -13,6 +13,7 @@ import BreadList, {
 } from 'components/bread_list';
 import type { CartItem } from 'types/cart_item';
 import type { CurrentCartItems } from 'types/current_cart_items';
+import type { User } from 'types/users';
 import styles from 'styles/order_check.module.css';
 import Cookies from 'js-cookie';
 import { Options } from 'types/options';

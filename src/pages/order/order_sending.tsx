@@ -172,7 +172,30 @@ export default function OrderSending() {
         .catch((error) => console.error(error));
     };
 
+    // 8.注文完了後メール発送
+    const sendMail = async () => {
+      await fetch('/api/mail_ordered', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // ここでメール本文に送るデータをもうちょい足したいが
+        // 現時点では注文コードのみ…要改善
+        body: JSON.stringify(code),
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            console.log('【success】', code);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert('エラーー');
+        });
+    };
+
     orderDate();
+    sendMail();
   }
 
   return <h1>注文中...</h1>;

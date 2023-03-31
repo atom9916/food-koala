@@ -3,7 +3,7 @@ type Review = {
   id: number;
   shop_id: number;
   user_id: number;
-  image_url: string;
+  image_base64: string;
   name: string;
   review: string;
 };

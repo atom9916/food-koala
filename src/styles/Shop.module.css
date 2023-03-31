@@ -34,6 +34,7 @@
 .shop_id_score {
     color: #F78404;
     font-size: 18px;
+    font:bold;
 }
 
 .shop_id_description {
@@ -215,32 +216,123 @@
     padding: 5px 10px;
 }
 
+.error_name,.error_date,.error_score,.error_review,.error_overReview {
+    font-size: small;
+    color: red;
+    }
 
 /* favorite_buttonのCSS */
 
-.shop_favorite_true,.shop_favorite_false{
+.shop_favorite_true,.shop_favorite_false ,.shop_favorite_true_start{
     text-align: right;
     margin-right: 20%;
 }
 
-.shop_favorite_true button{
+.shop_favorite_true::before{
+    text-align: right;
+}
+
+.shop_favorite_true button ,.shop_favorite_true_start button{
     border: none;
-    background-color: rgb(235, 70, 73);
-    color:white;
-    border-radius: 5px;
-    width:40px;
-    height:30px;
+    color:rgb(235, 70, 73);
+    background-color: transparent;
+    width:30px;
+    height:auto;
     cursor: pointer;
+    font-size: large;
+    position: relative;
+    display: inline-block;
 }
 
 .shop_favorite_false button{
     border: none;
-    background-color: white ;
     color:gray;
-    border-radius: 5px;
-    width:40px;
-    height:30px;
+    background-color: transparent;
+    width:30px;
+    height:auto;
     cursor: pointer;
+    font-size: large;
+}
+
+.shop_favorite_true::before,.shop_favorite_true::after{
+    content:"";
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    opacity: 0;
+}
+
+.shop_favorite_true::before{
+    font-family: "Font Awesome 6 Free";
+    content: "\f004";
+    border: none;
+    color:rgb(235, 70, 73);
+    animation-name:heart;
+    animation-duration:0.5s;
+    animation-iteration-count: 1;
+    position: absolute;
+    text-align: right;
+    width:30px;
+    height:auto;
+    font-size: large;
+}
+
+
+.shop_favorite_true::after{
+    font-family: "Font Awesome 6 Free";
+    content: "\f004";
+    border: none;
+    color:rgb(235, 70, 73);
+    animation-name:heart_after;
+    animation-duration:0.5s;
+    animation-iteration-count: 1;
+    position: absolute;
+    text-align: left;
+    width:30px;
+    height:auto;
+    font-size: large;
+}
+
+
+@keyframes heart {
+    0% {
+        opacity: 0;
+        transform:translateY(0px) translateX(0px) 
+      }
+    25% {
+        transform: translateY(-5px) translateX(10px) ;
+        opacity: 1;
+      }
+
+    75% {
+        transform:translateY(-10px) translateX(20px) ;
+        opacity: 1;
+      }
+    100% {
+        transform: translateY(-20px) translateX(30px) ;
+        opacity: 0;
+      }
+}
+@keyframes heart_after {
+    0% {
+        opacity: 0;
+        transform:translateY(0px) translateX(-20px) ;
+      }
+    25% {
+        transform: translateY(-5px) translateX(-30px) ;
+        opacity: 1;
+      }
+
+    75% {
+        transform:translateY(-10px) translateX(-40px) ;
+        opacity: 1;
+      }
+    100% {
+        transform: translateY(-20px) translateX(-50px) ;
+        opacity: 0;
+      }
 }
 
 @media  screen and (max-width:780px) {

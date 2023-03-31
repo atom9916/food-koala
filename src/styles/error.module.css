@@ -1,0 +1,101 @@
+.main {
+    position: relative;
+    align-items: center;
+    margin-top: 80px;
+    padding: 0 20px;
+    min-height: 100vh;
+    background-image: url(/images/background_koala_1280.jpg);
+    background-size: cover;
+}
+
+.main h1 {
+    text-align: left;
+    height: 100%;
+    padding-top: 20px;
+    color: #554c45;
+}
+
+.wrapper {
+    /* wrapperをmainの中央に配置 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* error_messageをwrapperの上下中央に配置 */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.error_message {
+    color: #554c45;
+    margin: 30px auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #554c45;
+}
+
+.error_message h2 {
+    margin: 20px auto;
+    font-size: 35px;
+    border-bottom: 1px solid #554c45;
+}
+
+.error_message p {
+    font-size: 20px;
+}
+
+.link {
+    text-decoration: none;
+    padding: 5px;
+    border: 1px solid #554c45;
+    background-color: #554c45;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.link:hover {
+    opacity: 0.6;
+}
+
+/* タブレット */
+@media screen and (max-width: 960px) {
+    .main {
+        background-image: url(/images/background_koala_640.jpg);
+    }
+    .main h1 {
+        font-size: 30px;
+    }
+
+    .error_message h2 {
+        font-size: 28px;
+    }
+}
+
+/* スマホ */
+@media screen and (max-width: 480px) {
+    .main {
+        background-image: url(/images/background_koala_480.jpg);
+    }
+
+    .main h1 {
+        font-size: 25px;
+        color: #fff;
+    }
+
+    .error_message h2 {
+        font-size: 25px;
+    }
+
+    .error_message p {
+        font-size: 15px;
+    }
+
+    .link {
+        font-size: 10px;
+    }
+}

@@ -2,7 +2,6 @@
   display: block;
   margin: 3px auto; 
   position: absolute;
-  left: 3%;
 }
 
 @media screen and (max-width:780px) {

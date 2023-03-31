@@ -31,7 +31,7 @@ export default function ShopScore({ id }: { id: number }) {
   } else if (Number.isNaN(score)) {
     return (
       <p className={styles.shop_id_score}>
-        -<i className="fa-regular fa-star"></i>
+        -&nbsp;<i className="fa-regular fa-star"></i>
         <i className="fa-regular fa-star"></i>
         <i className="fa-regular fa-star"></i>
         <i className="fa-regular fa-star"></i>
@@ -42,7 +42,7 @@ export default function ShopScore({ id }: { id: number }) {
     if (score < 0.5) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-regular fa-star"></i>
           <i className="fa-regular fa-star"></i>
           <i className="fa-regular fa-star"></i>
@@ -53,7 +53,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 1) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star-half-stroke"></i>
           <i className="fa-regular fa-star"></i>
           <i className="fa-regular fa-star"></i>
@@ -64,7 +64,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 1.5) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-regular fa-star"></i>
           <i className="fa-regular fa-star"></i>
@@ -75,7 +75,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 2) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star-half-stroke"></i>
           <i className="fa-regular fa-star"></i>
@@ -86,7 +86,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 2.5) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
           <i className="fa-regular fa-star"></i>
@@ -97,7 +97,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 3) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star-half-stroke"></i>
@@ -108,7 +108,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 3.5) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
@@ -119,7 +119,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 4) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
@@ -130,7 +130,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 4.5) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
@@ -141,7 +141,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else if (score < 5) {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
@@ -152,7 +152,7 @@ export default function ShopScore({ id }: { id: number }) {
     } else {
       return (
         <p className={styles.shop_id_score}>
-          {score}
+          {score}&nbsp;
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>

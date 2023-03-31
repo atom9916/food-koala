@@ -40,5 +40,9 @@
       "username": "sugiurasaki",
       "password": ""
     }
+  ],
+  "cSpell.words": [
+    "filetoupload",
+    "SUPABASE"
   ]
 }

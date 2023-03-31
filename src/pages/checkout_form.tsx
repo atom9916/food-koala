@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/router';
 import CheckoutForm from '../components/CheckoutForm';
@@ -46,7 +46,7 @@ export default function Checkout() {
     },
   };
 
-  const options = {
+  const options: any = {
     clientSecret,
     appearance,
   };

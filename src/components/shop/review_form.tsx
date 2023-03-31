@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import stream from 'stream';
 
 const currentDate = new Date();
 const year = currentDate.getFullYear();
@@ -15,6 +16,7 @@ export default function ReviewForm({ id }: { id: number }) {
   const [date, setDate] = useState('');
   const [score, setScore] = useState('');
   const [review, setReview] = useState('');
+  const [image, setImage] = useState<File | null>(null);
   const [error, setError] = useState({
     name: '',
     date: '',
@@ -55,7 +57,21 @@ export default function ReviewForm({ id }: { id: number }) {
     return error;
   }
 
-  function handleSubmit(event: SyntheticEvent) {
+  function handleSelect(event: SyntheticEvent) {
+    event.preventDefault();
+    const formData = new FormData();
+    if (image === null) {
+      console.log('ミス！！');
+      return;
+    } else {
+      formData.append('image', image);
+      console.log('formData', formData.get('image'));
+      fetch('/api/upload_image', { method: 'POST', body: formData });
+    }
+  }
+
+  // const shop_id = router.asPath.split('/shop/')[1];
+  async function handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
     const results = validate({ name, date, score, review });
     setError(results);
@@ -64,14 +80,15 @@ export default function ReviewForm({ id }: { id: number }) {
       date !== '' &&
       score !== '' &&
       review !== '' &&
-      review.length <= 500
+      review.length <= 500 &&
+      userId !== undefined
     ) {
       postReview();
     }
   }
 
-  function postReview() {
-    fetch('/api/post_review', {
+  async function postReview() {
+    await fetch('/api/post_review', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -123,19 +140,20 @@ export default function ReviewForm({ id }: { id: number }) {
           method="POST"
           className={styles.review}
           onSubmit={(e) => handleSubmit(e)}
+          id="review"
         >
           <div className={styles.review_forms}>
             <div className={styles.review_forms_name}>
               <input
                 type="text"
                 name="name"
-                placeholder="ニックネーム（投稿に表示されます）"
+                placeholder="ニックネーム※投稿に表示されます"
                 onChange={(e) => {
                   setName(e.currentTarget.value);
                 }}
               />
               {error.name && (
-                <p className={styles[error.name]}>{error.name}</p>
+                <p className={styles['error_name']}>{error.name}</p>
               )}
             </div>
             <div className={styles.review_forms_flexbox}>
@@ -145,11 +163,11 @@ export default function ReviewForm({ id }: { id: number }) {
                 <input
                   type="date"
                   name="date"
-                  max={`${currentDate}`}
+                  max={`${today}`}
                   onChange={(e) => setDate(e.currentTarget.value)}
                 />
                 {error.date && (
-                  <p className={styles[error.date]}>{error.date}</p>
+                  <p className={styles['error_date']}>{error.date}</p>
                 )}
               </div>
               <div className={styles.review_forms_score}>
@@ -164,7 +182,9 @@ export default function ReviewForm({ id }: { id: number }) {
                   onChange={(e) => setScore(e.currentTarget.value)}
                 />
                 {error.score && (
-                  <p className={styles[error.score]}>{error.score}</p>
+                  <p className={styles['error_score']}>
+                    {error.score}
+                  </p>
                 )}
               </div>
             </div>
@@ -177,14 +197,32 @@ export default function ReviewForm({ id }: { id: number }) {
                 onChange={(e) => setReview(e.currentTarget.value)}
               />
               {error.review && (
-                <p className={styles[error.review]}>{error.review}</p>
+                <p className={styles['error_review']}>
+                  {error.review}
+                </p>
               )}
               {error.overReview && (
-                <p className={styles[error.overReview]}>
+                <p className={styles['error_overReview']}>
                   {error.overReview}
                 </p>
               )}
             </div>
+            {/* <div className={styles.review_forms_img}>
+              <input
+                type="file"
+                accept="image/jpg,image/png"
+                name="filetoupload"
+                id="img_url"
+                onChange={(e) => {
+                  if (e.target.files === null) {
+                    return console.log('ミス');
+                  } else {
+                    setImage(e.target.files);
+                  }
+                  handleSelect;
+                }}
+              />
+            </div> */}
           </div>
           <button
             type="submit"
@@ -198,53 +236,38 @@ export default function ReviewForm({ id }: { id: number }) {
   );
 }
 
-// const [image_url, setImage] = useState<string | ArrayBuffer | null>(
-//   ''
-// );
-
-// function handleUpload(event: any) {
-//   const file = event.target.files[0];
-//   const reader = new FileReader();
-//   reader.onloadend = () => {
-//     setImage(reader.result);
-//   };
-//   reader.readAsDataURL(file);
+// async function patchReview(formData: BodyInit | null | undefined) {
+//   await fetch('/api/patch_review', {
+//     method: 'PATCH',
+//     body: formData,
+//   });
 // }
 
-/* <div className={styles.review_forms_img}>
-                <input
-                  type="file"
-                  accept="image/jpg,image/png"
-                  name="img_url"
-                  alt="画像を選択してください"
-                  onChange={handleUpload}
-                />
-              </div> */
+// let formData = new FormData();
+//       formData.append('shop_id', shop_id);
+//       formData.append('review', review);
+//       formData.append('user_id', userId);
+//       formData.append('name', name);
+//       formData.append('date', date);
+//       formData.append('score', score);
+//       formData.append('image', image || '');
+//       console.log('formData', formData);
 
-// export function validate(input: { [k: string]: string }): {
-//   [k: string]: string;
-// } {
-//   const error = {
-//     name: 'ok',
-//     date: 'ok',
-//     score: 'ok',
-//     review: 'ok',
-//   };
+// body: JSON.stringify({
+//   shop_id: id,
+//   review: review,
+//   user_id: userId,
+//   name: name,
+//   date: date,
+//   score: score,
+// }),
 
-//   if (input.name === '') {
-//     error.name = 'alert';
-//   }
-
-//   if (input.date === '') {
-//     error.date = 'alert';
-//   }
-
-//   if (input.score === '') {
-//     error.score = 'alert';
-//   }
-
-//   if (input.review === '') {
-//     error.review = 'alert';
-//   }
-//   return error;
+// for (let [key, value] of formData.entries()) {
+//   console.log(key + ': ' + value);
 // }
+
+// formData.append('image', image || '');
+
+// const [image, setImage] = useState<File | null>(null);
+
+// onChange={(e) => setImage(e.target.files[0])}

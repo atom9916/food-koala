@@ -46,7 +46,11 @@ margin-top: 80px;
     transform: translateY(1px);
   }
 
-  @media screen and (max-width: 768px){
+/* shopリストのパンくずリスト */
+.shop_list,.menu_list{
+  padding-top: 8px;
+  display: flex;
+}  @media screen and (max-width: 768px){
     .aside{
       width: 100vw;
       height: auto;
